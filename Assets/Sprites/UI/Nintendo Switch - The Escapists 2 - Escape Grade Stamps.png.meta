@@ -1,0 +1,566 @@
+fileFormatVersion: 2
+guid: 4c9d1019a90d4a840882ce617ca92013
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8806827791833312106
+    second: gradestampA
+  - first:
+      213: -1332815472640866229
+    second: gradeA
+  - first:
+      213: 3374844466024267754
+    second: gradeB
+  - first:
+      213: -7980680539189313588
+    second: gradeC
+  - first:
+      213: 7337087218260852816
+    second: gradeF
+  - first:
+      213: 9174306129194843845
+    second: gradeF
+  - first:
+      213: 195188306026174718
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_6
+  - first:
+      213: 1159108398525159347
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_7
+  - first:
+      213: 4774257509356723240
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_8
+  - first:
+      213: 6290754368008744702
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_9
+  - first:
+      213: -5816802020343960049
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_10
+  - first:
+      213: -7338919151324889077
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_11
+  - first:
+      213: 8453853427832254210
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_12
+  - first:
+      213: -8784537806009362612
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_13
+  - first:
+      213: 2551222620456587649
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_14
+  - first:
+      213: -8281811666754318609
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_15
+  - first:
+      213: 7995097343061886374
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_16
+  - first:
+      213: -3264891515400348793
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_17
+  - first:
+      213: 8184324483777871192
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_18
+  - first:
+      213: 6603689982680459338
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_19
+  - first:
+      213: 5734771994784766874
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_20
+  - first:
+      213: 5213115693744286176
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_21
+  - first:
+      213: -1270153503566595022
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_22
+  - first:
+      213: 4756210666030501673
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_23
+  - first:
+      213: -8179707613652339757
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_24
+  - first:
+      213: -3304181231702725112
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_25
+  - first:
+      213: -7805498310495120644
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_26
+  - first:
+      213: -4596372251719402769
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_27
+  - first:
+      213: 2642422158257165214
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_28
+  - first:
+      213: 4587494870298291382
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_29
+  - first:
+      213: -1812715140327066312
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_30
+  - first:
+      213: -4479568704771230947
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_31
+  - first:
+      213: -248206850293862292
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_32
+  - first:
+      213: 4233113126235446241
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_33
+  - first:
+      213: 6447849789987139424
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_34
+  - first:
+      213: -9048326449723441305
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_35
+  - first:
+      213: 4725751974573899116
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_36
+  - first:
+      213: 2753191749550385926
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_37
+  - first:
+      213: -6108187053485220499
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_38
+  - first:
+      213: 2755132063797057362
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_39
+  - first:
+      213: -4636144517831771859
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_40
+  - first:
+      213: -583069075111613080
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_41
+  - first:
+      213: 2870416881271824454
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_42
+  - first:
+      213: 3940181285665529701
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_43
+  - first:
+      213: -7125666221067404099
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_44
+  - first:
+      213: -8172893519341372339
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_45
+  - first:
+      213: 3393555606377002775
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_46
+  - first:
+      213: 6363640073317542958
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_47
+  - first:
+      213: 5727367900812965034
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_48
+  - first:
+      213: -3185679563120975643
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_49
+  - first:
+      213: -7947819838988116984
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_50
+  - first:
+      213: 2410818234873048734
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_51
+  - first:
+      213: -479098342006876289
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_52
+  - first:
+      213: -3441828190462814720
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_53
+  - first:
+      213: 8539963162694710540
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_54
+  - first:
+      213: -788687010778303869
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_55
+  - first:
+      213: -7096817153551073920
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_56
+  - first:
+      213: 5703179327115481744
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_57
+  - first:
+      213: -195742372951737012
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_58
+  - first:
+      213: 2793130095309069175
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_59
+  - first:
+      213: 1416319707190105178
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_60
+  - first:
+      213: 4553898109485909249
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_61
+  - first:
+      213: 5500200922009313637
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_62
+  - first:
+      213: 8902257363723879723
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_63
+  - first:
+      213: -464854853840218632
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_64
+  - first:
+      213: 178247588776856329
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_65
+  - first:
+      213: 6914090427758978159
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_66
+  - first:
+      213: -1144999719086252994
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_67
+  - first:
+      213: 7969536014359016289
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_68
+  - first:
+      213: -4583403107992070757
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_69
+  - first:
+      213: 1597675609952789271
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_70
+  - first:
+      213: 4428880443030789952
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_71
+  - first:
+      213: -5220181415199908026
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_72
+  - first:
+      213: 1507362695466964722
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_73
+  - first:
+      213: -3684145514433661598
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_74
+  - first:
+      213: -2502109927097755391
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_75
+  - first:
+      213: -4391656301377848679
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_76
+  - first:
+      213: -8426566023056084332
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_77
+  - first:
+      213: -1663770224733713934
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_78
+  - first:
+      213: -6741737473232386311
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_79
+  - first:
+      213: -1269202648281721879
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_80
+  - first:
+      213: -987990112757494776
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_81
+  - first:
+      213: -8958988204546110568
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_82
+  - first:
+      213: -4252108873512152214
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_83
+  - first:
+      213: -3394163029271925069
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_84
+  - first:
+      213: 8295200147398188370
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_85
+  - first:
+      213: 2916805925740555052
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_86
+  - first:
+      213: 6478216498940902915
+    second: gradeA
+  - first:
+      213: 8806827791833312106
+    second: gradeA
+  - first:
+      213: 8806827791833312106
+    second: gradeA
+  - first:
+      213: -8703396604367175484
+    second: gradeB
+  - first:
+      213: 3374844466024267754
+    second: gradeC
+  - first:
+      213: -7980680539189313588
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_3
+  - first:
+      213: 7337087218260852816
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_4
+  - first:
+      213: 8806827791833312106
+    second: gradeA
+  - first:
+      213: -7565921328748228994
+    second: gradeB
+  - first:
+      213: -4248699037278296728
+    second: gradeC
+  - first:
+      213: -4249418134619042341
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_3
+  - first:
+      213: 5882500138941631757
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_4
+  - first:
+      213: 2516587853039937595
+    second: gradeF
+  - first:
+      213: -4749229604029972291
+    second: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_6
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gradeA
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 4
+        width: 264
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6b23425733283a70800000000000000
+      internalID: 8806827791833312106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gradeB
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 4
+        width: 263
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e096133a2700790800000000000000
+      internalID: -7565921328748228994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gradeC
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 4
+        width: 261
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 865ab757cb69905c0800000000000000
+      internalID: -4248699037278296728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_3
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 2
+        width: 266
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bddcdef88b80705c0800000000000000
+      internalID: -4249418134619042341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_4
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 2
+        width: 266
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d4dc4a5b6d2a150800000000000000
+      internalID: 5882500138941631757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gradeF
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 4
+        width: 261
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b382282a157bce220800000000000000
+      internalID: 2516587853039937595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nintendo Switch - The Escapists 2 - Escape Grade Stamps_6
+      rect:
+        serializedVersion: 2
+        x: 1610
+        y: 2
+        width: 266
+        height: 230
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db0460f66d8571eb0800000000000000
+      internalID: -4749229604029972291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

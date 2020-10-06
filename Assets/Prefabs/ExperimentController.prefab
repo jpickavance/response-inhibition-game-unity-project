@@ -1,0 +1,222 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7131760805522865844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 946064460126452660}
+  - component: {fileID: 5180596308547216829}
+  - component: {fileID: 5775997613387032269}
+  m_Layer: 0
+  m_Name: ExperimentController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &946064460126452660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131760805522865844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8381239, y: -1.8774152, z: -3128.2444}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5180596308547216829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131760805522865844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2315609bbafdcc4cb220d88f808324f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tokenId: 
+  trial: 0
+  trainingTrial: 0
+  red: {r: 0, g: 0, b: 0, a: 0}
+  n_training: 5
+  n_trials: 12
+  n_bins: 2
+  acceptableError: 100
+  setSpeed: 10
+  handedness: 
+  minSetDelay: 0.5
+  maxSetDelay: 1.5
+  mouseZeroY: 0
+  SSD: 880
+  setupTime: 0
+  enterTime: 0
+  holdTime: 0
+  initiationTime: 0
+  movementTime: 0
+  feedbackTime: 0
+  stopTime: 0
+  moved: 0
+  hit: 0
+  onetime: 0
+  reminderOnce: 0
+  timeData: 
+  posyData: 
+  yInputData: 
+  xInputData: 
+  TrialCount: {fileID: 0}
+  gameOver: {fileID: 0}
+  Feedback: {fileID: 0}
+  Results: {fileID: 0}
+  Target: {fileID: 0}
+  StartPoint: {fileID: 0}
+  Intercept: {fileID: 0}
+  startPointController: {fileID: 0}
+  targetController: {fileID: 0}
+  backgroundController: {fileID: 0}
+  trialController: {fileID: 0}
+  tutorialController: {fileID: 0}
+  feedbackController: {fileID: 0}
+  pauseController: {fileID: 0}
+  mouseMove: {fileID: 0}
+  Bat: {fileID: 0}
+  clickReminder: {fileID: 0}
+  ResultScreen: {fileID: 0}
+  GameState: 
+  GameProgress: 
+  tTrial: 
+  certainty: 
+  stopTrial: 
+  str_SSD: 
+  str_moved: 
+  str_hit: 
+  pauses: 0
+  n_hits: 0
+  n_pauses: 0
+  n_falsestarts: 0
+  combo: 0
+  certFlightTimes: 
+  uncertFlightTimes: 
+  trials_paused: []
+  comboList: 
+  hitPerc: 
+  flightTime: 
+  highCombo: 
+  falseStarts: 
+  proactiveScore: 
+  reactiveScore: 
+  finalGrade: {fileID: 0}
+  gradeGraphic: {fileID: 0}
+  Stamp: {fileID: 8300000, guid: 9deda0e285b7f674492f6d489fbdea7b, type: 3}
+  trumpet: {fileID: 8300000, guid: 1d340a17d69859341937ac4dc62a0dcf, type: 3}
+  audioSource: {fileID: 0}
+  gradeA: {fileID: -1332815472640866229, guid: 4c9d1019a90d4a840882ce617ca92013, type: 3}
+  gradeB: {fileID: 3374844466024267754, guid: 4c9d1019a90d4a840882ce617ca92013, type: 3}
+  gradeC: {fileID: -7980680539189313588, guid: 4c9d1019a90d4a840882ce617ca92013, type: 3}
+  gradeF: {fileID: 9174306129194843845, guid: 4c9d1019a90d4a840882ce617ca92013, type: 3}
+  resultsDisplayed: 0
+--- !u!82 &5775997613387032269
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7131760805522865844}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
