@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5417434328339301988}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Confetti
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5417434329726928000}
   - component: {fileID: 5417434329726928006}
   - component: {fileID: 5417434329726928007}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Confetti1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5417434329726928001}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6.31, y: -6.95, z: 1}
+  m_LocalPosition: {x: -6.3099976, y: -6.950012, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5417434328339301988}
@@ -4762,7 +4762,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2138830105
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 99
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -4797,7 +4797,7 @@ GameObject:
   - component: {fileID: 5417434329890507190}
   - component: {fileID: 5417434329890507188}
   - component: {fileID: 5417434329890507189}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Confetti2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4812,7 +4812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5417434329890507191}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.31, y: -6.93, z: 1}
+  m_LocalPosition: {x: -1.3099976, y: -6.9299927, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5417434328339301988}
@@ -9516,7 +9516,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2138830105
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 99
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

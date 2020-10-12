@@ -38,6 +38,30 @@ public class ExperimentController : MonoBehaviour
                                             string tokenId, 
                                             string n_pauses,
                                             string trials_paused);
+
+    [DllImport("__Internal")]
+    private static extern void InsertUser (string tableName,
+                                           string token,
+                                           string widthPx,
+                                           string heightPx,
+                                           string pxRatio,
+                                           string browserVersion,
+                                           string handedness,
+                                           string sensitivity,
+                                           string consentTime,
+                                           string tutorial1Trials,
+                                           string tutorial2Trials,
+                                           string startTime);
+
+    [DllImport("__Internal")]
+    private static extern void InsertLeaderboardUser   (string tableName,
+                                                        string token,
+                                                        int score,
+                                                        string rSSRT,
+                                                        string hitPerc,
+                                                        string pSSRT,
+                                                        string comboHigh,
+                                                        string falseStarts);
     //variables for program
     public string tokenId;
     public int trial;
@@ -108,6 +132,8 @@ public class ExperimentController : MonoBehaviour
     public int n_pauses;
     public int n_falsestarts;
     public int combo;
+    public int scoreIncrement;
+    public int score;
     public List<int> certFlightTimes;
     public List<int> uncertFlightTimes;
     public List<string> trials_paused;
@@ -146,6 +172,8 @@ public class ExperimentController : MonoBehaviour
         trial = 0;
         trainingTrial = 0;
         pauses = 0;
+        score = 0;
+        scoreIncrement = 100;
         gameOver.text = "";
         moved = false;
         hit = false;
@@ -339,21 +367,25 @@ public class ExperimentController : MonoBehaviour
         }
         else if(GameProgress == "experiment")
         {
-            if(trialController.stopTrials[trial] == 0 && hit)
+            if((trialController.stopTrials[trial] == 0 && hit) || (trialController.stopTrials[trial] == 1 && !moved))
             {
-                n_hits += 1;
+                if(trialController.stopTrials[trial] == 0 && hit)
+                {
+                    n_hits += 1;
+                }
                 combo += 1;
+                score += scoreIncrement;
+                scoreIncrement += 100;
             }
-            if(trialController.stopTrials[trial] == 0 && !hit)
+            if((trialController.stopTrials[trial] == 0 && !hit) || (trialController.stopTrials[trial] == 1 && moved))
             {
                 comboList.Add(combo);
                 combo = 0;
-            }
-            if(trialController.stopTrials[trial] == 1 && moved)
-            {
-                n_falsestarts += 1;
-                comboList.Add(combo);
-                combo = 0;
+                scoreIncrement = 0;
+                if(trialController.stopTrials[trial] == 1 && moved)
+                {
+                    n_falsestarts += 1;
+                }
             }
             if(trialController.certainty[trial] == 1)
             {
@@ -389,7 +421,7 @@ public class ExperimentController : MonoBehaviour
     }
     public void GameOver()
     {
-        if(UserInfo.Instance.GameMode != "debug" && UserInfo.Instance.GameMode != "notryan")
+        if(UserInfo.Instance.GameMode != "debug")
         {
             string trialPauseData = String.Join(", ", UserInfo.Instance.trials_paused.ToArray());
             UpdateUser("schoolUserData",
@@ -496,10 +528,39 @@ public class ExperimentController : MonoBehaviour
         ResultScreen.SetActive(true);
         StartCoroutine(GradeStamp());
     }
+    
+    private void PostUserData()
+    {
+        InsertUser("schoolUserData",  
+                    UserInfo.Instance.tokenId.ToString(),
+                    UserInfo.Instance.widthPx.ToString(),
+                    UserInfo.Instance.heightPx.ToString(),
+                    UserInfo.Instance.pxRatio.ToString(),
+                    UserInfo.Instance.browserVersion.ToString(),
+                    UserInfo.Instance.handedness.ToString(),
+                    UserInfo.Instance.consentTime.ToString(),
+                    UserInfo.Instance.mouseSensitivity.ToString(),
+                    tutorialController.tutorial1Trials.ToString(),
+                    tutorialController.tutorial2Trials.ToString(),
+                    tutorialController.startTime.ToString());
+        
+        InsertLeaderboardUser  ("schoolLeaderboard",
+                                UserInfo.Instance.tokenId.ToString(),
+                                score,
+                                reactiveScore,
+                                hitPerc,
+                                proactiveScore,
+                                highCombo,
+                                falseStarts);
+    }
 
     IEnumerator GradeStamp()
     {
         yield return new WaitForSeconds(2.5f);
+        if(UserInfo.Instance.GameMode != "debug")
+        {
+            PostUserData();
+        }
         Cursor.lockState = CursorLockMode.None;
         gradeGraphic.GetComponent<SpriteRenderer>().sprite = finalGrade;
         audioSource.PlayOneShot(Stamp, 0.5f);

@@ -136,7 +136,7 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_KEY_ID",
+            accessKeyId: "YOUR_ACCESS_ID",
             secretAccessKey: "YOUR_SECRET_KEY"
         };
         AWS.config.update(awsConfig);
@@ -181,7 +181,7 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_KEY_ID",
+            accessKeyId: "YOUR_ACCESS_ID",
             secretAccessKey: "YOUR_SECRET_KEY"
         };
         AWS.config.update(awsConfig);
@@ -233,7 +233,7 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_KEY_ID",
+            accessKeyId: "YOUR_ACCESS_ID",
             secretAccessKey: "YOUR_SECRET_KEY"
         };
         AWS.config.update(awsConfig);
@@ -277,7 +277,47 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_KEY_ID",
+            accessKeyId: "YOUR_ACCESS_ID",
+            secretAccessKey: "YOUR_SECRET_KEY"
+        };
+        AWS.config.update(awsConfig);
+        var docClient = new AWS.DynamoDB.DocumentClient();
+        var returnStr = "Error";
+        docClient.put(params, function(err, data)
+        {
+            if (err)
+            {
+                returnStr = "Error:" + JSON.stringify(err, undefined, 2);
+                SendMessage('ExperimentController', 'StringCallback', returnStr);
+            }
+            else
+            {
+                returnStr = "Data Inserted:" + JSON.stringify(data, undefined, 2);
+                SendMessage('ExperimentController', 'StringCallback', returnStr);
+            }
+        });
+    },
+        InsertLeaderboardUser: function (tableName, token, score, rSSRT, hitPerc, pSSRT, comboHigh, falseStarts)
+    {
+        var params =
+        {
+            TableName: Pointer_stringify(tableName),
+            Item:
+            {
+                "tokenId": Pointer_stringify(token),
+                "score": score,
+                "rSSRT": Pointer_stringify(rSSRT),
+                "hitPerc": Pointer_stringify(hitPerc),
+                "pSSRT": Pointer_stringify(pSSRT),
+                "comboHigh": Pointer_stringify(comboHigh),
+                "falseStarts": Pointer_stringify(falseStarts)
+            }
+        };
+        var awsConfig =
+        {
+            region: "eu-west-2",
+            endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
+            accessKeyId: "YOUR_ACCESS_ID",
             secretAccessKey: "YOUR_SECRET_KEY"
         };
         AWS.config.update(awsConfig);
@@ -318,7 +358,7 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_KEY_ID",
+            accessKeyId: "YOUR_ACCESS_ID",
             secretAccessKey: "YOUR_SECRET_KEY"
         };
         AWS.config.update(awsConfig);
@@ -334,5 +374,76 @@ mergeInto(LibraryManager.library,
                 console.log("summary data added to user table");
             }
         });
+    },
+    GetLeaderboardSize: function (tableName)
+    {
+        var params =
+        {
+            TableName: Pointer_stringify(tableName)
+        };
+        var awsConfig =
+        {
+            region: "eu-west-2",
+            endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
+            accessKeyId: "YOUR_ACCESS_ID",
+            secretAccessKey: "YOUR_SECRET_KEY"
+        };
+        AWS.config.update(awsConfig);
+        var dynamodb = new AWS.DynamoDB();
+        dynamodb.describeTable(params, function(err, data)
+        {
+            if (err)
+            {
+                var returnStr = "Unable to retrieve table length";
+                SendMessage('Leaderboard', 'ErrorCallback', returnStr);
+            }
+            else
+            {
+                SendMessage('Leaderboard', 'setLeaderboardSize', data.Table.ItemCount);
+            }
+        });
+    },
+    ReadLeaderboardTop10: function (tableName)
+    {
+        var params =
+        {
+            TableName: Pointer_stringify(tableName),
+            ProjectionExpression: "tokenId, score, comboHigh, hitPerc, rSSRT"
+        };
+        var awsConfig =
+        {
+            region: "eu-west-2",
+            endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
+            accessKeyId: "YOUR_ACCESS_ID",
+            secretAccessKey: "YOUR_SECRET_KEY"
+        };
+        AWS.config.update(awsConfig);
+        var docClient = new AWS.DynamoDB.DocumentClient();
+        docClient.scan(params, function(err, data)
+        {
+            if (err)
+            {
+                var returnStr = "Unable to retrieve items";
+                SendMessage('Leaderboard', 'ErrorCallback', returnStr);
+            }
+            else
+            {
+                console.log("success", data.Items);
+                data.Items.forEach(function(element)
+                    {
+                        var itemString = JSON.stringify(element);
+                        SendMessage('Leaderboard', 'appendResult', itemString);
+                    });
+            }
+        });
+    },
+    OpenWindow: function(link)
+    {
+        var url = Pointer_stringify(link);
+        document.onmouseup = function()
+        {
+            window.open(url);
+            document.onmouseup = null;
+        }
     },
 });

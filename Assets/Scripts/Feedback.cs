@@ -122,7 +122,7 @@ public class Feedback : MonoBehaviour
             }
             else
             {
-                movementFeedback.text = experimentController.movementTime.ToString() + "\nPerfect!";
+                movementFeedback.text = experimentController.movementTime.ToString() + "\nGood!";
                 movementFeedback.GetComponent<Text>().color = green;
             }
         }

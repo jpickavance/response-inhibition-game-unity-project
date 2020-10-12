@@ -7,20 +7,6 @@ using System.Runtime.InteropServices;
 
 public class TutorialController : MonoBehaviour
 {
-    [DllImport("__Internal")]
-    private static extern void InsertUser (string tableName,
-                                           string token,
-                                           string widthPx,
-                                           string heightPx,
-                                           string pxRatio,
-                                           string browserVersion,
-                                           string handedness,
-                                           string sensitivity,
-                                           string consentTime,
-                                           string tutorial1Trials,
-                                           string tutorial2Trials,
-                                           string startTime);
-
     public ExperimentController experimentController;
     public BackgroundController backgroundController;
     public Feedback feedbackController;
@@ -38,7 +24,6 @@ public class TutorialController : MonoBehaviour
     public GameObject Instructions10;
     public Text instructions10Text;
     public GameObject Instructions11;
-    public GameObject Instructions12;
     public GameObject Instructions13;
     public GameObject Instructions14;
     public GameObject Instructions15;
@@ -83,7 +68,6 @@ public class TutorialController : MonoBehaviour
             MirrorXPos(Instructions9);
             MirrorXPos(Instructions10);
             MirrorXPos(Instructions11);
-            MirrorXPos(Instructions12);
             MirrorXPos(Instructions13);
             MirrorXPos(Instructions14);
             MirrorXPos(Instructions15);
@@ -104,10 +88,10 @@ public class TutorialController : MonoBehaviour
         tutorial2StopTrials = new List<int>{0, 2, 4, 5};
         tutorial2UncertainTrials = new List<int>{7, 8, 9, 10, 13, 14, 15, 16, 18};
         tutorial2ChangeTrials = new List<int>{8, 10, 13, 16, 18};
-        instructions8Text.text = "The perfect flight time is between " + (200-experimentController.acceptableError).ToString() + " and " + (200+experimentController.acceptableError);
-        instructions9Text.text = "Hit the fruit with the perfect flight time (" + (200-experimentController.acceptableError).ToString() + "-" + (200+experimentController.acceptableError) + ")\nUse the flight timer after each flight to help you adjust";
-        instructions10Text.text = "Hit the fruit with the perfect flight time " + experimentController.n_training.ToString() + " times in a row";
-        instructions17Text.text = "You have completed training\nThe rules are the same for the full game:\n\n\t<b>Night</b> - hit the fruit with the perfect flight time\n\t<b>Sunrise</b> - hit the fruit with the perfect flight time\n\t<b>Day</b> - stay inside the cave\n\nThere will be " + experimentController.n_trials.ToString() + " trials in total\nYou will be graded on your performance at the end";
+        instructions8Text.text = "A good flight time is between " + (200-experimentController.acceptableError).ToString() + " and " + (200+experimentController.acceptableError);
+        instructions9Text.text = "Hit the fruit with a good flight time (" + (200-experimentController.acceptableError).ToString() + "-" + (200+experimentController.acceptableError) + ")\nUse the flight timer after each flight to help you adjust";
+        instructions10Text.text = "Hit the fruit with a good flight time " + experimentController.n_training.ToString() + " times in a row";
+        instructions17Text.text = "You have completed training\nThe rules are the same for the full game:\n\n\t<b>Night</b> - hit the fruit with a good flight time\n\t<b>Sunrise</b> - hit the fruit with a good flight time\n\t<b>Day</b> - stay inside the cave\n\nThere will be " + experimentController.n_trials.ToString() + " trials in total\nYou will be graded on your performance at the end";
     }
 
     // Update is called once per frame
@@ -282,13 +266,11 @@ public class TutorialController : MonoBehaviour
                 }
                 else
                 {
-                    Instructions12.SetActive(true);
                     if(Input.GetMouseButtonDown(0))
                         {
                             feedbackController.NextTrial();
                             counter1Int += 1;
                             tutorial2Trials += 1;
-                            Instructions12.SetActive(false);
                             experimentController.trial += 1;
                             experimentController.ResetApparatus();
                             InstructionsMoved.SetActive(false);
@@ -487,10 +469,6 @@ public class TutorialController : MonoBehaviour
     public void StartExperiment()
     {   
         startTime = DateTime.Now;
-        if(UserInfo.Instance.GameMode != "debug" && UserInfo.Instance.tokenId != "notryan")
-        {
-            PostUserData();
-        }
         experimentController.trial = 0;
         experimentController.SSD = 780;
         experimentController.GameProgress = "experiment";
@@ -599,20 +577,5 @@ public class TutorialController : MonoBehaviour
     public void MirrorXPos(GameObject instructionsObject)
     {
         instructionsObject.GetComponent<RectTransform>().localPosition = new Vector3 (-instructionsObject.transform.localPosition.x, instructionsObject.transform.localPosition.y);
-    }
-    private void PostUserData()
-    {
-        InsertUser("schoolUserData",  
-                    UserInfo.Instance.tokenId.ToString(),
-                    UserInfo.Instance.widthPx.ToString(),
-                    UserInfo.Instance.heightPx.ToString(),
-                    UserInfo.Instance.pxRatio.ToString(),
-                    UserInfo.Instance.browserVersion.ToString(),
-                    UserInfo.Instance.handedness.ToString(),
-                    UserInfo.Instance.consentTime.ToString(),
-                    UserInfo.Instance.mouseSensitivity.ToString(),
-                    tutorial1Trials.ToString(),
-                    tutorial2Trials.ToString(),
-                    startTime.ToString());
     }
 }
