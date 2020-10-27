@@ -28,12 +28,14 @@ public class MainMenu : MonoBehaviour
     private static extern string fullscreenMenuListener();
 
     public InputField TokenField;
-    public InputField HandednessField;
-
     public Text errMessage;
     public GameObject consentForm;
     public DateTime consentTime;
     public DateTime startTime;
+    public bool handTicked;
+    public ToggleGroup handToggle;
+    public bool pointerTicked;
+    public ToggleGroup pointerToggle;
 
     [System.Serializable]
     public class tokenClass
@@ -44,12 +46,14 @@ public class MainMenu : MonoBehaviour
 
     public void Awake()
     {
-        UserInfo.Instance.consent = false;
         TokenField.Select();
     }
 
     public void Start()
     {
+        UserInfo.Instance.consent = false;
+        handTicked = false;
+        pointerTicked = false;
         if(UserInfo.Instance.GameMode != "debug")
         {
             UserInfo.Instance.widthPx = getScreenWidth();
@@ -62,9 +66,20 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame() 
     { 
-        if(UserInfo.Instance.consent == false && UserInfo.Instance.GameMode != "debug" && UserInfo.Instance.tokenId != "notryan")
+        if((UserInfo.Instance.GameMode != "debug" && UserInfo.Instance.tokenId != "notryan") && (UserInfo.Instance.consent == false || !handTicked || !pointerTicked))
         {
-            errMessage.text = "You must provide your consent before participating in the experiment";
+            if(!handTicked)
+            {
+                errMessage.text = "You must select your preferred hand before participating in the experiment";
+            }
+            else if(!pointerTicked)
+            {
+                errMessage.text = "You must select your pointer device before participating in the experiment";
+            }
+            else if(UserInfo.Instance.consent == false)
+            {
+                errMessage.text = "You must provide your consent before participating in the experiment";
+            }
         }
         else
         {
@@ -104,9 +119,32 @@ public class MainMenu : MonoBehaviour
         UserInfo.Instance.tokenId = TokenField.text.ToString();
     }
 
-    public void GetHandedness()
+    public void HandLeft()
     {
-        UserInfo.Instance.handedness = HandednessField.text.ToString();
+        UserInfo.Instance.handedness = "left";
+        handTicked = true;
+        handToggle.allowSwitchOff = false;
+    }
+
+    public void HandRight()
+    {
+        UserInfo.Instance.handedness = "right";
+        handTicked = true;
+        handToggle.allowSwitchOff = false;
+    }
+
+    public void PointerMouse()
+    {
+        UserInfo.Instance.pointer = "mouse";
+        pointerTicked = true;
+        pointerToggle.allowSwitchOff = false;
+    }
+
+    public void PointerTrackpad()
+    {
+        UserInfo.Instance.pointer = "trackpad";
+        pointerTicked = true;
+        pointerToggle.allowSwitchOff = false;
     }
 
         // This is called in the ReadData() .js function, supplying the requested data as its argument
@@ -123,7 +161,7 @@ public class MainMenu : MonoBehaviour
         }
         else if(tokenObject.available == false)
         {
-            errMessage.text = "The token you have entered has already been used.";
+            errMessage.text = "The token you have entered has already been used";
         }
     }
 

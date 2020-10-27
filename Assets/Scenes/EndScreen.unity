@@ -761,14 +761,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Thank you for participating in the experiment. You may now view the leaderboards
+    to see how your performance compared to other participants
 
 
-    If
-    you would like to learn more about the study you can email us at <b>psjpp@leeds.ac.uk</b>
+    If you would
+    like to learn more about the study, you can email us at <b>psjpp@leeds.ac.uk</b>
 
 
     Press
-    <ESCAPE> and close your browser when you have finished'
+    <ESCAPE> and close your browser when you have finished
+
+
+    Thankyou for you
+    time!'
 --- !u!222 &112412208
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4539,7 +4544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -225}
+  m_AnchoredPosition: {x: 0, y: -285}
   m_SizeDelta: {x: 592.33307, y: 144.55287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1076880606

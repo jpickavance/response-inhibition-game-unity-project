@@ -8,10 +8,15 @@ public class StartPointController : MonoBehaviour
     public Color red;
     public Color green;
     public Sprite caveLeft;
+    public GameObject Sky;
+    public Sprite StopSky;
     public bool clicked;
     public ExperimentController experimentController;
+    public TutorialController tutorialController;
+    public TrialController trialController;
     public GameObject Target;
     public GameObject Bat;
+    public GameObject smokeEffect;
     public Vector2 cursorStartPosition = new Vector2(4.5f, -3.6f);
     public Vector2 caveStartPosition = new Vector2(4.5f, -3.5f);
     public float setDelay = 5f;
@@ -50,6 +55,7 @@ public class StartPointController : MonoBehaviour
                 StopAllCoroutines();
                 experimentController.clickReminder.SetActive(false);
                 batAnimatorController.SetBool("BatHold", true);
+                batAnimatorController.SetBool("BatBurn", false);
                 experimentController.GameState = "holding";
                 experimentController.holdBegin = DateTime.Now;
                 ZeroMouse = Bat.transform.position.y - cursorStartPosition.y;

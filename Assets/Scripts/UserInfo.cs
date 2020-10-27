@@ -15,6 +15,7 @@ public class UserInfo : MonoBehaviour
     public string browserVersion;
     public string tokenId;
     public string handedness;
+    public string pointer;
     public DateTime consentTime;
     public string GameMode;
     public float mouseSensitivity;

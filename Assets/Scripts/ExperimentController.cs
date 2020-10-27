@@ -47,6 +47,7 @@ public class ExperimentController : MonoBehaviour
                                            string pxRatio,
                                            string browserVersion,
                                            string handedness,
+                                           string pointer,
                                            string sensitivity,
                                            string consentTime,
                                            string tutorial1Trials,
@@ -538,8 +539,9 @@ public class ExperimentController : MonoBehaviour
                     UserInfo.Instance.pxRatio.ToString(),
                     UserInfo.Instance.browserVersion.ToString(),
                     UserInfo.Instance.handedness.ToString(),
-                    UserInfo.Instance.consentTime.ToString(),
+                    UserInfo.Instance.pointer.ToString(),
                     UserInfo.Instance.mouseSensitivity.ToString(),
+                    UserInfo.Instance.consentTime.ToString(),
                     tutorialController.tutorial1Trials.ToString(),
                     tutorialController.tutorial2Trials.ToString(),
                     tutorialController.startTime.ToString());

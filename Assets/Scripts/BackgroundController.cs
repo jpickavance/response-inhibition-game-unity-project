@@ -8,6 +8,7 @@ public class BackgroundController : MonoBehaviour
     public GameObject Mountains_F;
     public GameObject Mountains_B;
     public GameObject Sky;
+    public Animator batAnimatorController;
     public Sprite DayMountains_F;
     public Sprite NightMountains_F;
     public Sprite StopMountains_F;
@@ -89,6 +90,5 @@ public class BackgroundController : MonoBehaviour
             Mountains_F.GetComponent<SpriteRenderer>().sprite = StopMountains_F;
             Mountains_B.GetComponent<SpriteRenderer>().sprite = StopMountains_B;
         }
-
     }
 }

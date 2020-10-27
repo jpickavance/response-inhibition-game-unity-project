@@ -574,8 +574,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304.68, y: -327.74}
-  m_SizeDelta: {x: 1229.5504, y: 88.25751}
+  m_AnchoredPosition: {x: -590.42, y: -280}
+  m_SizeDelta: {x: 642.62146, y: 173.66162}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &422965284
 CanvasRenderer:
@@ -2031,8 +2031,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00024033, y: -0.000024319}
-  m_SizeDelta: {x: 1229.55, y: 88.25754}
+  m_AnchoredPosition: {x: 0.00019646, y: 0.000005722}
+  m_SizeDelta: {x: 1141.4543, y: 173.66159}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1300617321
 CanvasRenderer:
@@ -2065,7 +2065,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 88ea75a9053f106459a11a24e6d30129, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 4
@@ -2074,7 +2074,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 'Hit the fruit
+
+    Move with a good flight time
+
+    Goal: 10 times in
+    a row'
 --- !u!1 &1422435231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,10 +3155,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hit the fruit with a good flight time (100-300)
+  m_Text: 'Hit the fruit
 
-    Use the flight timer
-    after each try to help you adjust'
+    Move with a good flight time (100-300)
+
+    Use the
+    flight timer after each try to help you adjust'
 --- !u!1 &1983255705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3465,8 +3472,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -662, y: -427}
-  m_SizeDelta: {x: 516.9139, y: 102.96969}
+  m_AnchoredPosition: {x: -654.86, y: -427}
+  m_SizeDelta: {x: 531.1938, y: 102.96969}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5731476723619623218
 CanvasRenderer:
@@ -3543,8 +3550,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00059509, y: 0.0001564}
-  m_SizeDelta: {x: 754.7505, y: 316.8711}
+  m_AnchoredPosition: {x: -0.00021267, y: 0.027191}
+  m_SizeDelta: {x: 499.0304, y: 635.45874}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &235179108064527141
 CanvasRenderer:
@@ -3586,14 +3593,18 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Fruitbats get tired flying:
+  m_Text: 'Fruitbats can get tired:
 
-    - For too long
 
-    - Too fast
+    -Flying too fast
 
-    Use
-    the flight timer to help you fly without getting tired'
+    OR
+
+    -Flying too
+    slow
+
+
+    Use the flight timer to help you avoid getting tired'
 --- !u!1 &7428697946394241187
 GameObject:
   m_ObjectHideFlags: 0
@@ -3629,8 +3640,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1232, y: -477}
-  m_SizeDelta: {x: 754.75195, y: 316.87073}
+  m_AnchoredPosition: {x: -1359.9, y: -349.43}
+  m_SizeDelta: {x: 499.0299, y: 572.18243}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5943067541812575021
 CanvasRenderer:

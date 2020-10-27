@@ -12,9 +12,13 @@ public class Feedback : MonoBehaviour
     public Color green;
     public GameObject Splat;
     public GameObject Cave;
+    public GameObject BatCursor;
+    public GameObject SmokeEffect;
     public AudioClip splatSound;
     public AudioClip trumpet;
     public AudioClip caveNoises;
+    public AudioClip burnSound;
+    public Animator batAnimatorController;
     AudioSource audioSource;
     public ExperimentController experimentController;
     public TrialController trialController;
@@ -138,13 +142,20 @@ public class Feedback : MonoBehaviour
         }
         else
         {
-            hitFeedback.text = "DANGER!";
+            hitFeedback.text = "OUCH!";
             hitFeedback.GetComponent<Text>().color = red;
+            audioSource.PlayOneShot(burnSound, 0.5f);
+            batAnimatorController.SetBool("BatBurn", true);
+            Vector3 SmokePos = BatCursor.GetComponent<Transform>().position;
+            SmokePos.y = SmokePos.y + 1.8f;
+            SmokeEffect.transform.position = SmokePos; 
+            SmokeEffect.SetActive(true);
         }
     }
     public void NextTrial()
     {
         StopAllCoroutines();
+        SmokeEffect.SetActive(false);
         experimentController.clickReminder.SetActive(false);
         if(experimentController.GameProgress != "tutorial1" && experimentController.GameProgress != "tutorial2")
         {

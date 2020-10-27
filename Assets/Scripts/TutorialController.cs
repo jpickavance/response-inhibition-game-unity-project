@@ -89,9 +89,9 @@ public class TutorialController : MonoBehaviour
         tutorial2UncertainTrials = new List<int>{7, 8, 9, 10, 13, 14, 15, 16, 18};
         tutorial2ChangeTrials = new List<int>{8, 10, 13, 16, 18};
         instructions8Text.text = "A good flight time is between " + (200-experimentController.acceptableError).ToString() + " and " + (200+experimentController.acceptableError);
-        instructions9Text.text = "Hit the fruit with a good flight time (" + (200-experimentController.acceptableError).ToString() + "-" + (200+experimentController.acceptableError) + ")\nUse the flight timer after each flight to help you adjust";
-        instructions10Text.text = "Hit the fruit with a good flight time " + experimentController.n_training.ToString() + " times in a row";
-        instructions17Text.text = "You have completed training\nThe rules are the same for the full game:\n\n\t<b>Night</b> - hit the fruit with a good flight time\n\t<b>Sunrise</b> - hit the fruit with a good flight time\n\t<b>Day</b> - stay inside the cave\n\nThere will be " + experimentController.n_trials.ToString() + " trials in total\nYou will be graded on your performance at the end";
+        instructions9Text.text = "Hit the fruit\nMove with a good flight time (" + (200-experimentController.acceptableError).ToString() + "-" + (200+experimentController.acceptableError) + ")\nUse the flight timer after each flight to help you adjust";
+        instructions10Text.text = "Hit the fruit\n Move with a good flight time\nGoal: " + experimentController.n_training.ToString() + " times in a row";
+        instructions17Text.text = "You have completed training\nThe rules are the same for the full game:\n\n\t<b>Night</b> - hit the fruit with a good flight time\n\t<b>Sunrise</b> - hit the fruit with a good flight time\n\t<b>Day</b> - stay inside the cave\n\nThere will be " + experimentController.n_trials.ToString() + " trials in total\nYou will be graded on your performance at the end\n\nGood luck!";
     }
 
     // Update is called once per frame
@@ -285,7 +285,7 @@ public class TutorialController : MonoBehaviour
         {
             Instructions13.SetActive(true);
             counter1.SetActive(true);
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -293,7 +293,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 2)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -301,7 +301,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 3)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -309,7 +309,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 4)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -317,7 +317,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 5)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -325,7 +325,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 6)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -333,7 +333,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 7)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             { 
                 setBackground();
                 Instructions13.SetActive(false);
@@ -346,9 +346,10 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 8)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             { 
                 setBackground();
+                InstructionsMoved.SetActive(false);
                 Instructions14.SetActive(false);
                 Instructions15.SetActive(true);
             }
@@ -356,7 +357,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 9)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
                 counter2.SetActive(true);
@@ -367,7 +368,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 10)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering") 
             {
                 setBackground();
             }
@@ -375,7 +376,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 11)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -383,7 +384,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 12)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -391,7 +392,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 13)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -399,7 +400,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 14)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -407,7 +408,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 15)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -415,7 +416,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 16)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -423,7 +424,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 17)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -431,7 +432,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 18)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -439,7 +440,7 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 19)
         {
-            if(experimentController.GameState == "setup")
+            if(experimentController.GameState == "setup" || experimentController.GameState == "entering")
             {
                 setBackground();
             }
@@ -524,6 +525,7 @@ public class TutorialController : MonoBehaviour
     {
             if(experimentController.GameState == "feedback")
             {
+                Instructions15.SetActive(false);
                 if(!experimentController.moved)
                 {
                     if(!onetime)

@@ -253,7 +253,7 @@ mergeInto(LibraryManager.library,
             }
         });
     },
-    InsertUser: function (tableName, token, widthPx, heightPx, pxRatio, browserVersion, handedness, consentTime, mouseSensitivity, tutorial1Trials, tutorial2Trials, startTime)
+    InsertUser: function (tableName, token, widthPx, heightPx, pxRatio, browserVersion, handedness, pointer, mouseSensitivity, consentTime, tutorial1Trials, tutorial2Trials, startTime)
     {
         var params =
         {
@@ -266,8 +266,9 @@ mergeInto(LibraryManager.library,
                 "pxRatio": Pointer_stringify(pxRatio),
                 "browserVersion": Pointer_stringify(browserVersion),
                 "handedness": Pointer_stringify(handedness),
-                "consentTime": Pointer_stringify(consentTime),
+                "pointer" : Pointer_stringify(pointer),
                 "mouseSensitivity": Pointer_stringify(mouseSensitivity),
+                "consentTime": Pointer_stringify(consentTime),
                 "tutorial1Trials": Pointer_stringify(tutorial1Trials),
                 "tutorial2Trials": Pointer_stringify(tutorial2Trials),
                 "startTime": Pointer_stringify(startTime)
