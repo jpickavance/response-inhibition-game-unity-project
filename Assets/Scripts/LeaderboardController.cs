@@ -114,11 +114,16 @@ public class LeaderboardController : MonoBehaviour
     void Awake()
     {
         currentIndex = 0;
-        GetLeaderboardSize("schoolLeaderboard");
-        ReadLeaderboardTop10("schoolLeaderboard");
+        GetLeaderboardSize("JP_FBS_Pilot_Leaderboard");
+        ReadLeaderboardTop10("JP_FBS_Pilot_Leaderboard");
         InitFields();
         myToken = UserInfo.Instance.tokenId;
         top10 = true;
+    }
+    
+    void Start()
+    {
+        StartCoroutine(LoadLeaderboard());
     }
 
     public void setLeaderboardSize(int tableLength)
@@ -131,17 +136,11 @@ public class LeaderboardController : MonoBehaviour
     {   
         ProfileClass profileItem = JsonUtility.FromJson<ProfileClass>(receivedData);
         int profileScoreInt = Convert.ToInt32(profileItem.score);
-        leaderboardData.Add(new ProfileClass2(){ tokenId = profileItem.tokenId.ToString(), score = profileScoreInt, comboHigh = profileItem.comboHigh.ToString(), hitPerc = profileItem.hitPerc.ToString(), rSSRT = profileItem.rSSRT.ToString()});
-        if(leaderboardData.Count == n_rows)
-        {
-            leaderboardData.Sort((x, y) => y.score.CompareTo(x.score));
-            for(int i = 0; i < n_rows; i++ )
-            {
-                Debug.LogError(leaderboardData[i]);
-            }
-            myIndex = leaderboardData.FindIndex(p => p.tokenId == myToken);
-            ShowLeaderBoard();
-        }
+        leaderboardData.Add(new ProfileClass2(){tokenId = profileItem.tokenId.ToString(),
+                                                score = profileScoreInt, 
+                                                comboHigh = profileItem.comboHigh.ToString(), 
+                                                hitPerc = profileItem.hitPerc.ToString(), 
+                                                rSSRT = profileItem.rSSRT.ToString()});
     }
 
     public void ShowLeaderBoard()
@@ -287,6 +286,17 @@ public class LeaderboardController : MonoBehaviour
         ssrtCol.Add(ssrt9);
         ssrtCol.Add(ssrt10);
     }
+
+    IEnumerator LoadLeaderboard()
+    {
+        yield return new WaitForSeconds(2.0f);
+        
+            leaderboardData.Sort((x, y) => y.score.CompareTo(x.score));
+            for(int i = 0; i < n_rows; i++ )
+            {
+                Debug.LogError(leaderboardData[i]);
+            }
+            myIndex = leaderboardData.FindIndex(p => p.tokenId == myToken);
+            ShowLeaderBoard();
+    }
 }
-
-

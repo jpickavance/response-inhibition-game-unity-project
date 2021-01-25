@@ -9,6 +9,8 @@ public class UserInfo : MonoBehaviour
     //Static reference
     public static UserInfo Instance {get; private set;}
     //Data to persist
+    public string age;
+    public string gender;
     public string heightPx;
     public string widthPx;
     public string pxRatio;
@@ -22,7 +24,11 @@ public class UserInfo : MonoBehaviour
     public bool consent;
     public bool fullscreen;
     public bool locked;
+    public string gameProgress;
+    public int trialProgress;
+    public int SSD;
     public int n_pauses;
+    public int score;
     public List<string> trials_paused;
     private void Awake()
     {   

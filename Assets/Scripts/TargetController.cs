@@ -6,7 +6,7 @@ using UnityEngine;
 public class TargetController : MonoBehaviour
 {
     public Vector2 StartPos = new Vector2(-6.5f, 3.5f);
-    private Vector2 EndPos = new Vector2(11.0f, 3.5f);
+    public Vector2 EndPos = new Vector2(11.0f, 3.5f);
     public float speed;
     public ExperimentController experimentController;
     public GameObject Intercept;
@@ -26,7 +26,7 @@ public class TargetController : MonoBehaviour
         float step = speed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, EndPos, step);
         }
-        if(transform.position.x == EndPos.x)
+        if((experimentController.handedness == "right" && transform.position.x >= EndPos.x) ||(experimentController.handedness == "left" && (transform.position.x - .001f) <= EndPos.x))
         {
             EndTrialProcesses();
         }

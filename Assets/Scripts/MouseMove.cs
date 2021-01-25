@@ -43,7 +43,7 @@ public class MouseMove : MonoBehaviour
         clampedPosition.y = Mathf.Clamp(clampedPosition.y, minY, maxY);
         transform.position = clampedPosition;
 
-            if(experimentController.GameState == "moving")
+            if(experimentController.GameState == "moving" || experimentController.GameState == "feedback")
             {
                 timer = Math.Round((DateTime.Now - experimentController.moveBegin).TotalMilliseconds, 0);
                 string timeOutput = timer.ToString();

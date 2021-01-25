@@ -648,8 +648,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000038146973, y: 0.000038147}
-  m_SizeDelta: {x: 992.62427, y: 330.89368}
+  m_AnchoredPosition: {x: 0.00012589, y: 0.00017166}
+  m_SizeDelta: {x: 825.6559, y: 183.99084}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &446338593
 CanvasRenderer:
@@ -691,10 +691,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'At sunrise it can change to daytime.
+  m_Text: 'At sunrise it can change to day.
 
-    If it changes to daytime, stay
-    in the cave'
+    If it changes to day, stay in the
+    cave'
 --- !u!1 &487129372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,6 +1157,84 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &681289452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 681289455}
+  - component: {fileID: 681289454}
+  - component: {fileID: 681289453}
+  m_Layer: 5
+  m_Name: escapeText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &681289455
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681289452}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5440294974538072519}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -463, y: -496}
+  m_SizeDelta: {x: 1267.698, y: 62.23558}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &681289454
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681289452}
+  m_CullTransparentMesh: 0
+--- !u!114 &681289453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681289452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.87843144, g: 0.32156864, b: 0.5921569, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: b2fe096c11ddbc1468156bd6a08fe8e7, type: 3}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Press <b>ESCAPE</b> to exit fullscreen and pause
 --- !u!1 &685405755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,8 +2193,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -71, y: 0}
-  m_SizeDelta: {x: 917.46277, y: 200.98703}
+  m_AnchoredPosition: {x: -19.437, y: 0}
+  m_SizeDelta: {x: 773.62976, y: 168.65854}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1422435234
 CanvasRenderer:
@@ -2139,7 +2217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8784314, g: 0.32156864, b: 0.5921569, a: 0.33333334}
+  m_Color: {r: 0.7169812, g: 0.07778571, b: 0.22941737, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2877,8 +2955,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00018311, y: 0.00001812}
-  m_SizeDelta: {x: 908.94556, y: 310.55908}
+  m_AnchoredPosition: {x: 0.00018311, y: -0.000005722}
+  m_SizeDelta: {x: 908.94556, y: 200.98706}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1838256623
 CanvasRenderer:
@@ -2920,8 +2998,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: During the day it's too dangerous to go looking for food. Stay inside the
-    cave when the fruit goes overhead
+  m_Text: 'Fruitbats easily sunburn
+
+    Stay inside the cave during the day'
 --- !u!1 &1871056232
 GameObject:
   m_ObjectHideFlags: 0
@@ -3255,13 +3334,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitFeedback: {fileID: 1983255707}
   movementFeedback: {fileID: 529233545}
-  red: {r: 0.81960785, g: 0.047058824, b: 0.54509807, a: 1}
+  red: {r: 0.7176471, g: 0.078431375, b: 0.23137255, a: 1}
   green: {r: 0.3019608, g: 0.6745098, b: 0.14901961, a: 1}
   Splat: {fileID: 686047441}
   Cave: {fileID: 1248472899}
+  BatCursor: {fileID: 0}
+  SmokeEffect: {fileID: 0}
   splatSound: {fileID: 8300000, guid: bebce9b45ef0bb243bd32eb21f819120, type: 3}
   trumpet: {fileID: 8300000, guid: 1d340a17d69859341937ac4dc62a0dcf, type: 3}
   caveNoises: {fileID: 8300000, guid: 816f9d9fac1aeb249a002cdf98d699b8, type: 3}
+  burnSound: {fileID: 8300000, guid: b2ea1276351bf374d9656c25d88dde71, type: 3}
+  batAnimatorController: {fileID: 0}
   experimentController: {fileID: 0}
   trialController: {fileID: 0}
   tutorialController: {fileID: 0}
@@ -3398,8 +3481,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -450, y: -405}
-  m_SizeDelta: {x: 916.556, y: 119.97015}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 753.18506, y: 183.99115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2104696243
 CanvasRenderer:
@@ -3422,7 +3505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8784314, g: 0.32156864, b: 0.5921569, a: 0.33333334}
+  m_Color: {r: 0.7176471, g: 0.078431375, b: 0.23137255, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3550,8 +3633,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00021267, y: 0.027191}
-  m_SizeDelta: {x: 499.0304, y: 635.45874}
+  m_AnchoredPosition: {x: 2.8, y: 0.027191162}
+  m_SizeDelta: {x: 426.55994, y: 635.45874}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &235179108064527141
 CanvasRenderer:
@@ -3593,18 +3676,18 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Fruitbats can get tired:
+  m_Text: 'Fruitbats get tired:
 
 
     -Flying too fast
 
     OR
 
-    -Flying too
-    slow
+    -Flying too slow
 
 
-    Use the flight timer to help you avoid getting tired'
+    Use
+    the flight timer to help you avoid getting tired'
 --- !u!1 &7428697946394241187
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,8 +3723,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1359.9, y: -349.43}
-  m_SizeDelta: {x: 499.0299, y: 572.18243}
+  m_AnchoredPosition: {x: -1393, y: -344}
+  m_SizeDelta: {x: 487.8805, y: 572.18243}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5943067541812575021
 CanvasRenderer:
@@ -3736,6 +3819,7 @@ RectTransform:
   - {fileID: 1871056233}
   - {fileID: 1248472900}
   - {fileID: 208268769}
+  - {fileID: 681289455}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -28,20 +28,31 @@ public class MainMenu : MonoBehaviour
     private static extern string fullscreenMenuListener();
 
     public InputField TokenField;
+    public InputField AgeField;
+    public int ageYears;
     public Text errMessage;
     public GameObject consentForm;
     public DateTime consentTime;
     public DateTime startTime;
+    public bool genderTicked;
+    public ToggleGroup genderToggle;
     public bool handTicked;
     public ToggleGroup handToggle;
     public bool pointerTicked;
     public ToggleGroup pointerToggle;
+    public CameraController cameraController;
+    public GameObject Buttons;
+    public GameObject Form;
 
     [System.Serializable]
     public class tokenClass
     {
         public string tokenId;
         public bool available;
+        public string gameProgress;
+        public int trial;
+        public int SSD;
+        public int score;
     }
 
     public void Awake()
@@ -52,6 +63,7 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         UserInfo.Instance.consent = false;
+        genderTicked = false;
         handTicked = false;
         pointerTicked = false;
         if(UserInfo.Instance.GameMode != "debug")
@@ -66,8 +78,16 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame() 
     { 
-        if((UserInfo.Instance.GameMode != "debug" && UserInfo.Instance.tokenId != "notryan") && (UserInfo.Instance.consent == false || !handTicked || !pointerTicked))
+        if((UserInfo.Instance.GameMode != "debug" && UserInfo.Instance.tokenId != "notryan") && (UserInfo.Instance.consent == false || !handTicked || !pointerTicked || !genderTicked || ageYears < 18))
         {
+            if(ageYears < 18)
+            {
+                errMessage.text = "You must be 18 years or older to participate";
+            }
+            if(!genderTicked)
+            {
+                errMessage.text = "You must indicate your gender before participating in the experiment";
+            }
             if(!handTicked)
             {
                 errMessage.text = "You must select your preferred hand before participating in the experiment";
@@ -85,7 +105,7 @@ public class MainMenu : MonoBehaviour
         {
             if(UserInfo.Instance.GameMode != "debug" && UserInfo.Instance.tokenId != "notryan")
             {
-                ReadData("tokenTable", UserInfo.Instance.tokenId.ToString());
+                ReadData("JP_FBS_Pilot_TokenTable", UserInfo.Instance.tokenId.ToString());
             }
             else
             {
@@ -98,7 +118,10 @@ public class MainMenu : MonoBehaviour
     public void ViewConsent()
     {
         Screen.fullScreen = true;
+        cameraController.ScaleFullScreenCamera();
         consentForm.SetActive(true);
+        Buttons.SetActive(false);
+        Form.SetActive(false);
     }
     public void GiveConsent()
     {
@@ -106,17 +129,40 @@ public class MainMenu : MonoBehaviour
         UserInfo.Instance.consentTime = DateTime.Now;
         errMessage.text = "";
         consentForm.SetActive(false);
+        Buttons.SetActive(true);
+        Form.SetActive(true);
     }
 
     public void RefuseConsent()
     {
         UserInfo.Instance.consent = false;
         consentForm.SetActive(false);
+        Buttons.SetActive(true);
+        Form.SetActive(true);
     }
     
     public void GetToken()
     {
         UserInfo.Instance.tokenId = TokenField.text.ToString();
+    }
+
+    public void GetAge()
+    {
+        ageYears = Convert.ToInt32(AgeField.text);
+        UserInfo.Instance.age = AgeField.text.ToString();
+    }
+
+    public void GenderFemale()
+    {
+        UserInfo.Instance.gender = "female";
+        genderTicked = true;
+        genderToggle.allowSwitchOff = false;
+    }
+    public void GenderMale()
+    {
+        UserInfo.Instance.gender = "male";
+        genderTicked = true;
+        genderToggle.allowSwitchOff = false;
     }
 
     public void HandLeft()
@@ -147,16 +193,20 @@ public class MainMenu : MonoBehaviour
         pointerToggle.allowSwitchOff = false;
     }
 
-        // This is called in the ReadData() .js function, supplying the requested data as its argument
+        // This is called in the ReadData() .js function, supplying the requested data as its argument. Checks token table for existence and completion
     public void StringCallback (string reqData)
     {
         tokenClass tokenObject = JsonUtility.FromJson<tokenClass>(reqData);
-        if(tokenObject.available == true)
+        //if available or incomplete progess start the experiment 
+        if(tokenObject.available == true || tokenObject.gameProgress != "complete")
         {
-
-            UpdateToken("tokenTable", 
+            UpdateToken("JP_FBS_Pilot_TokenTable", 
                         UserInfo.Instance.tokenId.ToString());
             //cursor was locked here
+            UserInfo.Instance.gameProgress = tokenObject.gameProgress;
+            UserInfo.Instance.trialProgress = tokenObject.trial;
+            UserInfo.Instance.SSD = tokenObject.SSD;
+            UserInfo.Instance.score = tokenObject.score;
             SceneManager.LoadScene("SettingsMenu");
         }
         else if(tokenObject.available == false)

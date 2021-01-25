@@ -236,7 +236,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1164049007}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -937,11 +938,10 @@ MonoBehaviour:
   pauseScreen: {fileID: 1376472448}
   switchToFullScreen: {fileID: 893931775}
   switchToLock: {fileID: 1695641763}
-  escapeText: {fileID: 1700851820}
   taskApparatus: {fileID: 1176505757}
   Instructions: {fileID: 1677756824}
   experimentController: {fileID: 0}
-  tutorialController: {fileID: 0}
+  cameraController: {fileID: 1164049006}
   oneTime: 0
   experiment: 0
 --- !u!1 &730920426
@@ -1137,8 +1137,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 192}
-  m_SizeDelta: {x: 892.27014, y: 107.07327}
+  m_AnchoredPosition: {x: 0, y: 88.831}
+  m_SizeDelta: {x: 972.8683, y: 313.41098}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &893931777
 MonoBehaviour:
@@ -1172,8 +1172,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: <b>CLICK</b> on the    icon in the bottom right corner of your browser
-    to enter <i>fullscreen</i>
+  m_Text: '<b>CLICK</b> on the    icon in the bottom right corner of your browser
+    to enter <i>fullscreen</i> and resume.
+
+
+    If you no longer wish to participate
+    in the study, you may close the browser window.'
 --- !u!222 &893931778
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1520,6 +1524,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1164049005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1164049007}
+  - component: {fileID: 1164049006}
+  m_Layer: 0
+  m_Name: CameraController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1164049006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164049005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0407610ea6d54d546b00e4348641d61d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 132874553}
+  canvasScaler: {fileID: 1677756826}
+  windowaspect: 0
+--- !u!4 &1164049007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164049005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 132874556}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1176505757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,7 +1717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -118, y: 26.3}
+  m_AnchoredPosition: {x: -189, y: 87}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1434743230

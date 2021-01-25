@@ -81,6 +81,7 @@ public class TutorialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startTime = DateTime.Now;
         tutorial1Trials = 0;
         tutorial2Trials = 0;
         counter1Int = 0;
@@ -120,6 +121,7 @@ public class TutorialController : MonoBehaviour
         experimentController.GameState = "setup";
     }
 
+    //Training for movement time
     public void Tutorial1()
     {
         if(experimentController.trial == 0)
@@ -237,6 +239,8 @@ public class TutorialController : MonoBehaviour
                 }
         }
     }
+
+    //Training for stop cues
     public void Tutorial2()
     {
         if(experimentController.trial == 0)

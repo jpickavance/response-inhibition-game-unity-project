@@ -38,10 +38,15 @@ public class ExperimentController : MonoBehaviour
                                             string tokenId, 
                                             string n_pauses,
                                             string trials_paused);
+    [DllImport("__Internal")]
+    private static extern void CompleteUser (string tableName, 
+                                            string tokenId);
 
     [DllImport("__Internal")]
     private static extern void InsertUser (string tableName,
                                            string token,
+                                           string age,
+                                           string gender,
                                            string widthPx,
                                            string heightPx,
                                            string pxRatio,
@@ -63,6 +68,8 @@ public class ExperimentController : MonoBehaviour
                                                         string pSSRT,
                                                         string comboHigh,
                                                         string falseStarts);
+
+    
     //variables for program
     public string tokenId;
     public int trial;
@@ -105,6 +112,7 @@ public class ExperimentController : MonoBehaviour
     public Text gameOver;
     public Text Feedback;
     public Text Results;
+    public GameObject escapeText;
     public GameObject Target;
     public GameObject StartPoint;
     public GameObject Intercept;
@@ -115,6 +123,7 @@ public class ExperimentController : MonoBehaviour
     public TutorialController tutorialController;
     public Feedback feedbackController;
     public PauseController pauseController;
+    public GameObject onCloseListener;
     public MouseMove mouseMove;
     public GameObject Bat;
     public GameObject clickReminder;
@@ -160,14 +169,55 @@ public class ExperimentController : MonoBehaviour
     {
         handedness = UserInfo.Instance.handedness;
         audioSource = GetComponent<AudioSource>();
-        if(UserInfo.Instance.GameMode != "debug")
-        {
-            tokenId = UserInfo.Instance.tokenId.ToString();
-        }
         if(handedness == "left")
         {
             TrialCount.GetComponent<RectTransform>().localPosition = new Vector2(-TrialCount.transform.localPosition.x, TrialCount.transform.localPosition.y);
+            pauseController.MirrorXPos(escapeText);
         }
+        if(UserInfo.Instance.GameMode != "debug" && UserInfo.Instance.tokenId != "notryan")
+        {
+            tokenId = UserInfo.Instance.tokenId.ToString();
+            if(UserInfo.Instance.gameProgress != "tutorial1" || UserInfo.Instance.trialProgress != 0)
+            {
+                Debug.LogError("Loading save state....");
+                GameProgress = UserInfo.Instance.gameProgress;
+                trial = UserInfo.Instance.trialProgress;
+                SSD = UserInfo.Instance.SSD;
+                score = UserInfo.Instance.score;
+                //add dummy data to lists so leaderboard doesn't crash on late rejoin
+                comboList.Add(1);
+                certFlightTimes.Add(200);
+                uncertFlightTimes.Add(200);
+                //////////////////////////////////////////////////////////
+                Target.GetComponent<TargetController>().speed = setSpeed;
+                scoreIncrement = 100;
+                gameOver.text = "";
+                moved = false;
+                hit = false;
+                resultsDisplayed = false;
+                pauseController.experiment = true;
+                StartTrial();
+            }
+            else
+            {
+            Debug.LogError("Loading new state....");
+            GameProgress = "tutorial1";
+            n_hits = 0;
+            trial = 0;
+            trainingTrial = 0;
+            pauses = 0;
+            score = 0;
+            scoreIncrement = 100;
+            gameOver.text = "";
+            moved = false;
+            hit = false;
+            resultsDisplayed = false;
+            pauseController.experiment = true;
+            tutorialController.StartTutorialTrial();
+            }
+        }
+        else
+        {
         GameProgress = "tutorial1";
         n_hits = 0;
         trial = 0;
@@ -181,6 +231,7 @@ public class ExperimentController : MonoBehaviour
         resultsDisplayed = false;
         pauseController.experiment = true;
         tutorialController.StartTutorialTrial();
+        }
     }
     public void Update()
     {
@@ -188,6 +239,7 @@ public class ExperimentController : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
+                Debug.Log("clicked");
                 GameOver();
             }
         }
@@ -216,7 +268,7 @@ public class ExperimentController : MonoBehaviour
         else if(GameProgress == "experiment")
         {
             CheckCertainty();
-            TrialCount.text = "Trial: " + (trial + 1).ToString();
+            TrialCount.text = "Level: \t" + (trial + 1).ToString() + "/" + n_trials.ToString();
         }
         else
         {
@@ -250,7 +302,7 @@ public class ExperimentController : MonoBehaviour
             stopTime = 0;
         }
         //when training is finished
-        if(GameProgress == "training" && trial == (n_training - 1) && hit && movementTime >= (200 - acceptableError) && movementTime <= (200 + acceptableError))
+        if(GameProgress == "training" && (trial == (n_training - 1) && hit && movementTime >= (200 - acceptableError) && movementTime <= (200 + acceptableError)) || trainingTrial >= 39)
         {
             feedbackController.trainingComplete = true;
             tutorialController.TrainingComplete.SetActive(true);
@@ -313,7 +365,7 @@ public class ExperimentController : MonoBehaviour
 
         if(UserInfo.Instance.GameMode != "debug" && GameProgress != "tutorial1" && GameProgress != "tutorial2" && UserInfo.Instance.tokenId != "notryan")
         {
-            InsertData ("schoolTrialData",
+            InsertData ("JP_FBS_Pilot_TrialData",
             tokenId,
             tTrial.ToString(),
             trialBegin.ToString(),
@@ -357,7 +409,7 @@ public class ExperimentController : MonoBehaviour
                 trial = 0;
             }
             //when training is finished
-            if(trial == n_training)
+            if(trial == n_training || trainingTrial >= 39)
             {
                 tutorialController.TrainingComplete.SetActive(false);
                 tutorialController.Instructions10.SetActive(false);
@@ -388,11 +440,11 @@ public class ExperimentController : MonoBehaviour
                     n_falsestarts += 1;
                 }
             }
-            if(trialController.certainty[trial] == 1)
+            if(trialController.certainty[trial] == 1 && moved)
             {
                 certFlightTimes.Add(Convert.ToInt16(movementTime));
             }
-            if(trialController.certainty[trial] == 0 && (trialController.stopTrials[trial] != 1))
+            if(trialController.certainty[trial] == 0 && (trialController.stopTrials[trial] != 1) && moved)
             {
                 uncertFlightTimes.Add(Convert.ToInt16(movementTime));
             }
@@ -425,7 +477,7 @@ public class ExperimentController : MonoBehaviour
         if(UserInfo.Instance.GameMode != "debug")
         {
             string trialPauseData = String.Join(", ", UserInfo.Instance.trials_paused.ToArray());
-            UpdateUser("schoolUserData",
+            UpdateUser("JP_FBS_Pilot_UserData",
             UserInfo.Instance.tokenId,
             pauses.ToString(),
             trialPauseData);
@@ -499,16 +551,16 @@ public class ExperimentController : MonoBehaviour
             }
             else if(certFlightTimes.Average() < 300 && certFlightTimes.Average() > 100)
             {
-                finalGrade = gradeB;
+                finalGrade = gradeA;
             }
             else
             {
-                finalGrade = gradeC;
+                finalGrade = gradeB;
             }
         }
         else
         {
-            finalGrade = gradeF;
+            finalGrade = gradeC;
         }
     }
     public void ShowResults()
@@ -532,8 +584,13 @@ public class ExperimentController : MonoBehaviour
     
     private void PostUserData()
     {
-        InsertUser("schoolUserData",  
+        CompleteUser("JP_FBS_Pilot_TokenTable",
+                     UserInfo.Instance.tokenId.ToString());
+        
+        InsertUser("JP_FBS_Pilot_UserData",  
                     UserInfo.Instance.tokenId.ToString(),
+                    UserInfo.Instance.age.ToString(),
+                    UserInfo.Instance.gender.ToString(),
                     UserInfo.Instance.widthPx.ToString(),
                     UserInfo.Instance.heightPx.ToString(),
                     UserInfo.Instance.pxRatio.ToString(),
@@ -546,7 +603,7 @@ public class ExperimentController : MonoBehaviour
                     tutorialController.tutorial2Trials.ToString(),
                     tutorialController.startTime.ToString());
         
-        InsertLeaderboardUser  ("schoolLeaderboard",
+        InsertLeaderboardUser  ("JP_FBS_Pilot_Leaderboard",
                                 UserInfo.Instance.tokenId.ToString(),
                                 score,
                                 reactiveScore,
@@ -559,6 +616,7 @@ public class ExperimentController : MonoBehaviour
     IEnumerator GradeStamp()
     {
         yield return new WaitForSeconds(2.5f);
+        onCloseListener.SetActive(false);
         if(UserInfo.Instance.GameMode != "debug")
         {
             PostUserData();

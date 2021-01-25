@@ -11,7 +11,7 @@ public class TrialController : MonoBehaviour
         // n_trials must have n_bins as a factor
         // n_trials/(over)n_bins must also have 2*(times)the denominator of stop trials as a factor
         // This code is for 1/3 stop trials on uncertain conditions
-    void Start()
+    void Awake()
     {
         double n_trials = experimentController.n_trials;
         int n_bins = experimentController.n_bins;

@@ -67,6 +67,16 @@ mergeInto(LibraryManager.library,
         }
       }
     },
+    UnloadListener: function()
+    {
+        window.addEventListener('beforeunload', function(e){
+            e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+            // Chrome requires returnValue to be set
+            var dialogText = "Your progress has been saved! Would you like to exit the page?";
+            e.returnValue = dialogText;
+            SendMessage('OnCloseListener', 'OnClose');
+        });
+    },
     getScreenWidth: function()
     {
         var widthPx = String(screen.width);
@@ -129,15 +139,15 @@ mergeInto(LibraryManager.library,
                 "tokenId": Pointer_stringify(token)
             },
             AttributesToGet: [
-                "tokenId", "available"
+                "tokenId", "available", "gameProgress", "trial", "SSD", "score"
             ]
         };
         var awsConfig =
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_ID",
-            secretAccessKey: "YOUR_SECRET_KEY"
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -145,6 +155,7 @@ mergeInto(LibraryManager.library,
         {
             if (err)
             {
+                console.log(err);
                 var returnStr = "Please enter a valid secret key";
                 SendMessage('MainMenu', 'ErrorCallback', returnStr);
             }
@@ -181,8 +192,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_ID",
-            secretAccessKey: "YOUR_SECRET_KEY"
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -233,8 +244,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_ID",
-            secretAccessKey: "YOUR_SECRET_KEY"
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -253,7 +264,7 @@ mergeInto(LibraryManager.library,
             }
         });
     },
-    InsertUser: function (tableName, token, widthPx, heightPx, pxRatio, browserVersion, handedness, pointer, mouseSensitivity, consentTime, tutorial1Trials, tutorial2Trials, startTime)
+    InsertUser: function (tableName, token, age, gender, widthPx, heightPx, pxRatio, browserVersion, handedness, pointer, mouseSensitivity, consentTime, tutorial1Trials, tutorial2Trials, startTime)
     {
         var params =
         {
@@ -261,6 +272,8 @@ mergeInto(LibraryManager.library,
             Item:
             {
                 "tokenId": Pointer_stringify(token),
+                "age": Pointer_stringify(age),
+                "gender": Pointer_stringify(gender),
                 "widthPx": Pointer_stringify(widthPx),
                 "heightPx": Pointer_stringify(heightPx),
                 "pxRatio": Pointer_stringify(pxRatio),
@@ -278,8 +291,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_ID",
-            secretAccessKey: "YOUR_SECRET_KEY"
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -298,7 +311,7 @@ mergeInto(LibraryManager.library,
             }
         });
     },
-        InsertLeaderboardUser: function (tableName, token, score, rSSRT, hitPerc, pSSRT, comboHigh, falseStarts)
+    InsertLeaderboardUser: function (tableName, token, score, rSSRT, hitPerc, pSSRT, comboHigh, falseStarts)
     {
         var params =
         {
@@ -318,8 +331,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_ID",
-            secretAccessKey: "YOUR_SECRET_KEY"
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -328,6 +341,7 @@ mergeInto(LibraryManager.library,
         {
             if (err)
             {
+                console.log(err);
                 returnStr = "Error:" + JSON.stringify(err, undefined, 2);
                 SendMessage('ExperimentController', 'StringCallback', returnStr);
             }
@@ -359,8 +373,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_ID",
-            secretAccessKey: "YOUR_SECRET_KEY"
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -376,6 +390,84 @@ mergeInto(LibraryManager.library,
             }
         });
     },
+    CompleteUser: function (tableName, token)
+    {
+        var params =
+        {
+            TableName: Pointer_stringify(tableName),
+            Key:
+            {
+                "tokenId": Pointer_stringify(token)
+            },
+            UpdateExpression: "set gameProgress = :g",
+            ExpressionAttributeValues:
+            {
+                ":g": "complete"
+            },
+            ReturnValues:"UPDATED_NEW"
+        };
+        var awsConfig =
+        {
+            region: "eu-west-2",
+            endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
+        };
+        AWS.config.update(awsConfig);
+        var docClient = new AWS.DynamoDB.DocumentClient();
+        docClient.update(params, function(err, data)
+        {
+            if (err)
+            {
+                console.log(err);
+            }
+            else if (data)
+            {
+                console.log("tokenId in tokenTable updated");
+            }
+        });
+    },
+    SaveProgress: function (tableName, token, gameProgress, trial, SSD, score, windowClose)
+    {
+        var params =
+        {
+            TableName: Pointer_stringify(tableName),
+            Key:
+            {
+                "tokenId": Pointer_stringify(token)
+            },
+            UpdateExpression: "set gameProgress = :g, trial = :t, SSD = :s, score = :c, windowClose = :w",
+            ExpressionAttributeValues:
+            {
+                ":g": Pointer_stringify(gameProgress),
+                ":t": trial,
+                ":s": SSD,
+                ":c": score,
+                ":w": windowClose
+            },
+            ReturnValues:"UPDATED_NEW"
+        };
+        var awsConfig =
+        {
+            region: "eu-west-2",
+            endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
+        };
+        AWS.config.update(awsConfig);
+        var docClient = new AWS.DynamoDB.DocumentClient();
+        docClient.update(params, function(err, data)
+        {
+            if (err)
+            {
+                console.log(err);
+            }
+            else if (data )
+            {
+                console.log("Game progress saved!");
+            }
+        });
+    },
     GetLeaderboardSize: function (tableName)
     {
         var params =
@@ -386,8 +478,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_ID",
-            secretAccessKey: "YOUR_SECRET_KEY"
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
         };
         AWS.config.update(awsConfig);
         var dynamodb = new AWS.DynamoDB();
@@ -415,8 +507,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: "YOUR_ACCESS_ID",
-            secretAccessKey: "YOUR_SECRET_KEY"
+            accessKeyId: YOUR_ID,
+            secretAccessKey: YOUR_SECRET_KEY
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -429,7 +521,6 @@ mergeInto(LibraryManager.library,
             }
             else
             {
-                console.log("success", data.Items);
                 data.Items.forEach(function(element)
                     {
                         var itemString = JSON.stringify(element);

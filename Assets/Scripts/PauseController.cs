@@ -12,11 +12,10 @@ public class PauseController : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject switchToFullScreen;
     public GameObject switchToLock;
-    public GameObject escapeText;
     public GameObject taskApparatus;
     public GameObject Instructions;
     public ExperimentController experimentController;
-    public TutorialController tutorialController;
+    public CameraController cameraController;
     public bool oneTime;
     public bool experiment;
     void Start()
@@ -25,6 +24,7 @@ public class PauseController : MonoBehaviour
         if(UserInfo.Instance.fullscreen)
         {
             taskApparatus.SetActive(true);
+            cameraController.ScaleFullScreenCamera();
             pauseScreen.SetActive(false);
             switchToLock.SetActive(true);
             switchToFullScreen.SetActive(false);
@@ -32,6 +32,7 @@ public class PauseController : MonoBehaviour
         else
         {
             taskApparatus.SetActive(false);
+            cameraController.ExitFullScreenCamera();
             pauseScreen.SetActive(true);
             switchToFullScreen.SetActive(true);
         }
@@ -40,13 +41,6 @@ public class PauseController : MonoBehaviour
             UserInfo.Instance.locked = false;
             fullscreenListener();
             lockListener();
-        }
-        else
-        {
-            if(UserInfo.Instance.handedness == "left")
-            {
-                MirrorXPos(escapeText);
-            }
         }
     }
 
@@ -57,7 +51,6 @@ public class PauseController : MonoBehaviour
             if(!UserInfo.Instance.fullscreen || !UserInfo.Instance.locked)
             {
                 pauseScreen.SetActive(true);
-                escapeText.SetActive(false);
                 Instructions.SetActive(false);
                 Time.timeScale = 0;
 
@@ -74,7 +67,6 @@ public class PauseController : MonoBehaviour
             {
                 pauseScreen.SetActive(false);
                 switchToLock.SetActive(false);
-                escapeText.SetActive(true);
                 Instructions.SetActive(true);
                 Time.timeScale = 1;
             }
@@ -83,7 +75,6 @@ public class PauseController : MonoBehaviour
         {
             pauseScreen.SetActive(false);
             switchToLock.SetActive(false);
-            escapeText.SetActive(false);
             Instructions.SetActive(true);
             switchToFullScreen.SetActive(false);
         }
@@ -91,7 +82,6 @@ public class PauseController : MonoBehaviour
         {
             pauseScreen.SetActive(false);
             switchToLock.SetActive(false);
-            escapeText.SetActive(false);
             Instructions.SetActive(false);
             switchToFullScreen.SetActive(false);
         }
@@ -106,7 +96,9 @@ public class PauseController : MonoBehaviour
                 UserInfo.Instance.fullscreen = true;
                 switchToFullScreen.SetActive(false);
                 taskApparatus.SetActive(true);
+                cameraController.ScaleFullScreenCamera();
                 Cursor.lockState = CursorLockMode.Locked;
+                
             }
             else if(stateReq == "exitFullscreen")
             {
@@ -114,6 +106,7 @@ public class PauseController : MonoBehaviour
                 switchToFullScreen.SetActive(true);
                 taskApparatus.SetActive(false);
                 experimentController.pauses += 1;
+                cameraController.ExitFullScreenCamera();
                 UserInfo.Instance.trials_paused.Add(experimentController.trial + ":" + experimentController.GameState);
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -145,7 +138,7 @@ public class PauseController : MonoBehaviour
             }
     }
 
-    private void MirrorXPos(GameObject instructionsObject)
+    public void MirrorXPos(GameObject instructionsObject)
     {
         instructionsObject.GetComponent<RectTransform>().localPosition = new Vector3 (-instructionsObject.transform.localPosition.x, instructionsObject.transform.localPosition.y);
     }
