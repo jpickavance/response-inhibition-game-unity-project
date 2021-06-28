@@ -10,6 +10,7 @@ public class Feedback : MonoBehaviour
     public Text movementFeedback;
     public Color red;
     public Color green;
+    public GameObject tooSlowWarning;
     public GameObject Splat;
     public GameObject Cave;
     public GameObject BatCursor;
@@ -25,6 +26,7 @@ public class Feedback : MonoBehaviour
     public TutorialController tutorialController;
     public bool trainingComplete;
     public bool feedbackOneTime;
+    public bool warningOneTime;
     void Awake()
     {   
         Splat.SetActive(false);
@@ -53,7 +55,10 @@ public class Feedback : MonoBehaviour
                     }
                     else
                     {
-                        audioSource.PlayOneShot(trumpet, 1f);
+                        if (!(UserInfo.Instance.zeroAimQuestions && experimentController.GameProgress == "tutorial2"))
+                        {
+                            audioSource.PlayOneShot(trumpet, 1f);
+                        }
                     }
                 }
                 else if(experimentController.GameProgress == "tutorial2")
@@ -79,7 +84,15 @@ public class Feedback : MonoBehaviour
             {
                 if(experimentController.GameProgress != "tutorial1" || experimentController.GameProgress != "tutorial2")
                 {
-                    NextTrial();
+                    if(experimentController.GameProgress == "experiment" && (experimentController.movementTime < 300 || trialController.stopTrials[experimentController.trial] == 1) || experimentController.GameProgress == "training")
+                    {
+                        NextTrial();
+                    }
+                    else if(experimentController.GameProgress == "experiment" && !warningOneTime)
+                    {
+                        StartCoroutine(WarningTimeout());
+                        warningOneTime = true;
+                    }
                 }
             }
         }
@@ -97,16 +110,31 @@ public class Feedback : MonoBehaviour
     {
         if(experimentController.hit)
         {
-            audioSource.PlayOneShot(splatSound, 0.5f);
-            Splat.SetActive(true);
-            hitFeedback.GetComponent<Text>().color = green;
-            MovementFeedback();
+            if(experimentController.GameProgress == "experiment" && experimentController.movementTime > 300) 
+            {
+                tooSlowWarning.SetActive(true);
+            }
+            else
+            {
+                audioSource.PlayOneShot(splatSound, 0.5f);
+                Splat.SetActive(true);
+                hitFeedback.GetComponent<Text>().color = green;
+                MovementFeedback();
+            }
+            
         }
         else
         {
-            hitFeedback.text = "MISS!";
-            hitFeedback.GetComponent<Text>().color = red;
-            MovementFeedback();
+            if(experimentController.GameProgress == "experiment" && experimentController.movementTime > 300) 
+            {
+                tooSlowWarning.SetActive(true);
+            }
+            else
+            {
+                hitFeedback.text = "MISS!";
+                hitFeedback.GetComponent<Text>().color = red;
+                MovementFeedback();
+            }
         }
     }
     public void MovementFeedback()
@@ -155,6 +183,7 @@ public class Feedback : MonoBehaviour
     public void NextTrial()
     {
         StopAllCoroutines();
+        tooSlowWarning.SetActive(false);
         SmokeEffect.SetActive(false);
         experimentController.clickReminder.SetActive(false);
         if(experimentController.GameProgress != "tutorial1" && experimentController.GameProgress != "tutorial2")
@@ -165,6 +194,15 @@ public class Feedback : MonoBehaviour
     IEnumerator ClickCountdown()
     {
         yield return new WaitForSeconds(5.0f);
-        experimentController.ClickTimeout();
+        if(!warningOneTime)
+        {
+            experimentController.ClickTimeout();
+        }
+    }
+    IEnumerator WarningTimeout()
+    {
+        yield return new WaitForSeconds(5.0f);
+        warningOneTime = false;
+        NextTrial();
     }
 }

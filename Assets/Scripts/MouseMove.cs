@@ -19,6 +19,8 @@ public class MouseMove : MonoBehaviour
     public List<string> posyList;
     public List<string> yInputList;
     public List<string> xInputList;
+    public List<string> targetPosxList;
+    public GameObject Target;
     public Vector2 StartZoneTopLeft;
     public Vector2 StartZoneBottomRight;
     void Start()
@@ -50,10 +52,12 @@ public class MouseMove : MonoBehaviour
                 string posyOutput = Math.Round(clampedPosition.y, 3).ToString();
                 string yInput = Math.Round(yDeltaPos, 3).ToString();
                 string xInput = Math.Round(xDeltaPos, 3).ToString();
+                string targetPos = Target.transform.position.x.ToString();
                 timeList.Add(timeOutput);
                 posyList.Add(posyOutput);
                 yInputList.Add(yInput);
                 xInputList.Add(xInput);
+                targetPosxList.Add(targetPos);
         
                 if(timer >= experimentController.SSD && !experimentController.onetime && ((experimentController.GameProgress == "experiment" && trialController.stopTrials[experimentController.trial] == 1) || (experimentController.GameProgress == "tutorial2" && tutorialController.tutorial2ChangeTrials.Contains(experimentController.trial))))
                 {

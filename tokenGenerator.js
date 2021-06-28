@@ -6,8 +6,8 @@ function generateTokens(length)
     AWS.config.update({
         region: "eu-west-2",
         endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-        accessKeyId: YOUR_ID,
-        secretAccessKey: YOUR_SECRET_KEY
+        accessKeyId: "AKIAUZ3DVLNPGX6EDYNA",
+        secretAccessKey: "XkvhpzichNrqcI0H5NiLrALUIOQuOIdkPHodKXHM"
     });
 
     var docClient = new AWS.DynamoDB.DocumentClient();
@@ -298,8 +298,8 @@ var csv = "RyanMorehead";
     AWS.config.update({
         region: "eu-west-2",
         endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-        accessKeyId: YOUR_ID,
-        secretAccessKey: YOUR_SECRET_KEY
+        accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+        secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
     });
 
     var docClient = new AWS.DynamoDB.DocumentClient();
@@ -345,8 +345,8 @@ addTokensFromCsv()
         AWS.config.update({
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-        accessKeyId: YOUR_ID,
-        secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         });
 
         var docClient = new AWS.DynamoDB.DocumentClient();

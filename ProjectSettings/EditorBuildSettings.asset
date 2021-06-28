@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Experiment.unity
     guid: 46d68cb74d9506644a6debdde1ccf6ac
   - enabled: 1
+    path: Assets/Scenes/AimQuestions.unity
+    guid: 2b7edcc7fe0dfea42bc06865329f531d
+  - enabled: 1
     path: Assets/Scenes/EndScreen.unity
     guid: 7789ae6017d1e0c4582dccb2327e2f69
   m_configObjects: {}

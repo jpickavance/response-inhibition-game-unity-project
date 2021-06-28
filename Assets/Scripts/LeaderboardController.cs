@@ -114,10 +114,10 @@ public class LeaderboardController : MonoBehaviour
     void Awake()
     {
         currentIndex = 0;
-        GetLeaderboardSize("JP_FBS_Pilot_Leaderboard");
-        ReadLeaderboardTop10("JP_FBS_Pilot_Leaderboard");
+        GetLeaderboardSize(UserInfo.Instance.LeaderboardTable);
+        ReadLeaderboardTop10(UserInfo.Instance.LeaderboardTable);
         InitFields();
-        myToken = UserInfo.Instance.tokenId;
+        myToken = UserInfo.Instance.username;
         top10 = true;
     }
     

@@ -146,8 +146,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -192,8 +192,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -211,7 +211,7 @@ mergeInto(LibraryManager.library,
     },
     InsertData: function (tableName, token, trialNum, trialStartTime, certaintyCond, stopCond, SSD, 
                           moved, hit, mouseZero, setupTime, enterTime, holdTime, stopTime, initiationTime, movementTime, feedbackTime,
-                          timeData, posyData, yInputData, xInputData)
+                          timeData, targetPosxData, posyData, yInputData, xInputData)
     {
         var params =
         {
@@ -235,6 +235,7 @@ mergeInto(LibraryManager.library,
                 "movementTime": Pointer_stringify(movementTime),
                 "feedbackTime": Pointer_stringify(feedbackTime),
                 "frameTime": Pointer_stringify(timeData),
+                "targetPos": Pointer_stringify(targetPosxData),
                 "pos_y": Pointer_stringify(posyData),
                 "y_input": Pointer_stringify(yInputData),
                 "x_input": Pointer_stringify(xInputData) 
@@ -244,8 +245,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -291,8 +292,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -331,8 +332,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -373,8 +374,71 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
+        };
+        AWS.config.update(awsConfig);
+        var docClient = new AWS.DynamoDB.DocumentClient();
+        docClient.update(params, function(err, data)
+        {
+            if (err)
+            {
+                console.log(err);
+            }
+            else if (data )
+            {
+                console.log("summary data added to user table");
+            }
+        });
+    },
+    UpdateAimVars: function (tableName, token, order, zeroAimQuestions,
+        CertainTargetPos, CertainTargetHitX, CertainTargetHitY, CertainBatHitX, CertainBatHitY, 
+        UncertainTargetPos, UncertainTargetHitX, UncertainTargetHitY, UncertainBatHitX, UncertainBatHitY,
+        ZeroOrder, ZeroCertainTargetPos, ZeroCertainTargetHitX, ZeroCertainTargetHitY, ZeroCertainBatHitX, ZeroCertainBatHitY,
+        ZeroUncertainTargetPos, ZeroUncertainTargetHitX, ZeroUncertainTargetHitY, ZeroUncertainBatHitX, ZeroUncertainBatHitY)
+    {
+        var params =
+        {
+            TableName: Pointer_stringify(tableName),
+            Key:
+            {
+                "tokenId": Pointer_stringify(token)
+            },
+            UpdateExpression: "set CertaintyOrder = :o, ZeroAimQuestions = :z, CertainTargetPos = :a, CertainTargetHitX = :b, CertainTargetHitY = :c, CertainBatHitX = :d, CertainBatHitY = :e, UncertainTargetPos = :f, UncertainTargetHitX = :g, UncertainTargetHitY = :h, UncertainBatHitX = :i, UncertainBatHitY = :j, ZeroCertaintyOrder = :k, ZeroCertainTargetPos = :l, ZeroCertainTargetHitX = :m, ZeroCertainTargetHitY = :n, ZeroCertainBatHitX = :p, ZeroCertainBatHitY = :q, ZeroUncertainTargetPos = :r, ZeroUncertainTargetHitX = :s, ZeroUncertainTargetHitY = :t, ZeroUncertainBatHitX = :u, ZeroUncertainBatHitY = :v",
+            ExpressionAttributeValues:
+            {
+                ":o": Pointer_stringify(order),
+                ":z": zeroAimQuestions,
+                ":a": CertainTargetPos,
+                ":b": CertainTargetHitX,
+                ":c": CertainTargetHitY,
+                ":d": CertainBatHitX,
+                ":e": CertainBatHitY,
+                ":f": UncertainTargetPos,
+                ":g": UncertainTargetHitX,
+                ":h": UncertainTargetHitY,
+                ":i": UncertainBatHitX,
+                ":j": UncertainBatHitY,
+                ":k": Pointer_stringify(ZeroOrder), 
+                ":l": ZeroCertainTargetPos,
+                ":m": ZeroCertainTargetHitX,
+                ":n": ZeroCertainTargetHitY,
+                ":p": ZeroCertainBatHitX,
+                ":q": ZeroCertainBatHitY,
+                ":r": ZeroUncertainTargetPos,
+                ":s": ZeroUncertainTargetHitX,
+                ":t": ZeroUncertainTargetHitY,
+                ":u": ZeroUncertainBatHitX,
+                ":v": ZeroUncertainBatHitY
+            },
+            ReturnValues:"UPDATED_NEW"
+        };
+        var awsConfig =
+        {
+            region: "eu-west-2",
+            endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "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"
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -410,8 +474,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -451,8 +515,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();
@@ -478,8 +542,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         };
         AWS.config.update(awsConfig);
         var dynamodb = new AWS.DynamoDB();
@@ -507,8 +571,8 @@ mergeInto(LibraryManager.library,
         {
             region: "eu-west-2",
             endpoint: "https://dynamodb.eu-west-2.amazonaws.com",
-            accessKeyId: YOUR_ID,
-            secretAccessKey: YOUR_SECRET_KEY
+            accessKeyId: "AKIAURBMNNXNQMTU6UGF",
+            secretAccessKey: "MF9HBMarYmMxt5z+VVoNEze/2qy9d7eYhuxnJ9Y4"
         };
         AWS.config.update(awsConfig);
         var docClient = new AWS.DynamoDB.DocumentClient();

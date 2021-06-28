@@ -18,6 +18,7 @@ public class PauseController : MonoBehaviour
     public CameraController cameraController;
     public bool oneTime;
     public bool experiment;
+    public bool aimQs;
     void Start()
     {
         oneTime = false;
@@ -36,7 +37,7 @@ public class PauseController : MonoBehaviour
             pauseScreen.SetActive(true);
             switchToFullScreen.SetActive(true);
         }
-        if(experimentController == null && UserInfo.Instance.GameMode != "debug") //only set listener functions if this is the calibration pause object (i.e. experiment controller not yet created)
+        if(experimentController == null && UserInfo.Instance.GameMode != "debug" && !aimQs) //only set listener functions if this is the calibration pause object (i.e. experiment controller not yet created)
         {
             UserInfo.Instance.locked = false;
             fullscreenListener();
@@ -48,7 +49,7 @@ public class PauseController : MonoBehaviour
     {
         if(!oneTime)
         {
-            if(!UserInfo.Instance.fullscreen || !UserInfo.Instance.locked)
+            if(!UserInfo.Instance.fullscreen || (!UserInfo.Instance.locked && !aimQs))
             {
                 pauseScreen.SetActive(true);
                 Instructions.SetActive(false);
@@ -60,7 +61,14 @@ public class PauseController : MonoBehaviour
                 }
                 else
                 {
-                    switchToLock.SetActive(true);
+                    if(experimentController.GameProgress != "tutorial2" && experimentController.trial !=20)
+                    {
+                        switchToLock.SetActive(true);
+                    }
+                    else
+                    {
+                        switchToLock.SetActive(false);
+                    }
                 }
             }
             else
@@ -71,7 +79,7 @@ public class PauseController : MonoBehaviour
                 Time.timeScale = 1;
             }
         }
-        else if(experiment == true)
+        else if(experiment || aimQs)
         {
             pauseScreen.SetActive(false);
             switchToLock.SetActive(false);
@@ -87,7 +95,7 @@ public class PauseController : MonoBehaviour
         }
     }
 
-    private void ToggleFullscreen(string stateReq)
+    public void ToggleFullscreen(string stateReq)
     {
         if(!oneTime)
         {
@@ -97,7 +105,11 @@ public class PauseController : MonoBehaviour
                 switchToFullScreen.SetActive(false);
                 taskApparatus.SetActive(true);
                 cameraController.ScaleFullScreenCamera();
+                if(!aimQs)
+                {
                 Cursor.lockState = CursorLockMode.Locked;
+                }
+                
                 
             }
             else if(stateReq == "exitFullscreen")
@@ -116,7 +128,10 @@ public class PauseController : MonoBehaviour
             if(stateReq == "fullscreen")
             {
                 UserInfo.Instance.fullscreen = true;
+                if(!aimQs)
+                {
                 Cursor.lockState = CursorLockMode.Locked;
+                }
             }
             else if(stateReq == "exitFullscreen")
             {

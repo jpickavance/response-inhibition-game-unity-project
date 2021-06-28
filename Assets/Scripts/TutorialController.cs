@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Runtime.InteropServices;
 
 public class TutorialController : MonoBehaviour
@@ -452,12 +453,19 @@ public class TutorialController : MonoBehaviour
         }
         if(experimentController.trial == 20)
         {
-            Instructions17.SetActive(true);
-            if(Input.GetMouseButtonDown(0))
+            if(UserInfo.Instance.zeroAimQuestions && UserInfo.Instance.n_aimQuestions == 0)
             {
-                feedbackController.NextTrial();
-                Instructions17.SetActive(false);
-                StartExperiment();
+                SceneManager.LoadScene("AimQuestions");
+            }
+            else
+            {
+                Instructions17.SetActive(true);
+                if(Input.GetMouseButtonDown(0))
+                {
+                    feedbackController.NextTrial();
+                    Instructions17.SetActive(false);
+                    StartExperiment();
+                }
             }
         }
     }
@@ -473,11 +481,11 @@ public class TutorialController : MonoBehaviour
     }
     public void StartExperiment()
     {   
-        startTime = DateTime.Now;
-        experimentController.trial = 0;
-        experimentController.SSD = 780;
-        experimentController.GameProgress = "experiment";
-        experimentController.StartTrial();
+            startTime = DateTime.Now;
+            experimentController.trial = 0;
+            experimentController.SSD = 780;
+            experimentController.GameProgress = "experiment";
+            experimentController.StartTrial();
     }
 
     public void CertainTrialCheck()
@@ -503,7 +511,14 @@ public class TutorialController : MonoBehaviour
                         {
                             Instructions16.SetActive(false);
                             counter2.SetActive(false);
-                            Instructions17.SetActive(true);
+                            if(!UserInfo.Instance.zeroAimQuestions)
+                            {
+                                Instructions17.SetActive(true);
+                            }
+                            else
+                            {
+                                SceneManager.LoadScene("AimQuestions");
+                            }
                         }
                     }
                     if(Input.GetMouseButtonDown(0))

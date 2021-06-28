@@ -28,19 +28,12 @@ public class ExperimentController : MonoBehaviour
                                             string initiationTime,
                                             string movementTime,
                                             string feedbackTime,
-                                            string timeData, 
+                                            string timeData,
+                                            string targetxData, 
                                             string posyData,
                                             string yInputData,
                                             string xInputData);
 
-    [DllImport("__Internal")]
-    private static extern void UpdateUser  (string tableName, 
-                                            string tokenId, 
-                                            string n_pauses,
-                                            string trials_paused);
-    [DllImport("__Internal")]
-    private static extern void CompleteUser (string tableName, 
-                                            string tokenId);
 
     [DllImport("__Internal")]
     private static extern void InsertUser (string tableName,
@@ -69,8 +62,23 @@ public class ExperimentController : MonoBehaviour
                                                         string comboHigh,
                                                         string falseStarts);
 
+    /* NO NEED TO UPDATE USER TABLE IN MTURK BUILD 
+    [DllImport("__Internal")]
+    private static extern void UpdateUser  (string tableName, 
+                                            string tokenId, 
+                                            string n_pauses,
+                                            string trials_paused);
+    [DllImport("__Internal")]
+    private static extern void CompleteUser (string tableName, 
+                                            string tokenId);
+
+    */
+
     
     //variables for program
+    public string URL;
+    public string WID;
+
     public string tokenId;
     public int trial;
     public int trainingTrial;
@@ -105,6 +113,7 @@ public class ExperimentController : MonoBehaviour
     public bool onetime;
     public bool reminderOnce;
     public string timeData;
+    public string targetxData;
     public string posyData;
     public string yInputData;
     public string xInputData;
@@ -167,6 +176,7 @@ public class ExperimentController : MonoBehaviour
     //functions and methods
     void Awake()
     {
+        pauseController.ToggleFullscreen("fullscreen");
         handedness = UserInfo.Instance.handedness;
         audioSource = GetComponent<AudioSource>();
         if(handedness == "left")
@@ -200,7 +210,32 @@ public class ExperimentController : MonoBehaviour
             }
             else
             {
-            Debug.LogError("Loading new state....");
+                Debug.LogError("Loading new state....");
+                GameProgress = "tutorial1";
+                n_hits = 0;
+                trial = 0;
+                trainingTrial = 0;
+                pauses = 0;
+                score = 0;
+                scoreIncrement = 100;
+                gameOver.text = "";
+                moved = false;
+                hit = false;
+                resultsDisplayed = false;
+                pauseController.experiment = true;
+                if(!UserInfo.Instance.zeroAimQuestions || UserInfo.Instance.n_aimQuestions == 0)
+                {
+                    tutorialController.StartTutorialTrial();
+                }
+                else if(UserInfo.Instance.n_aimQuestions == 1)
+                {
+                    trial = 20;
+                    GameProgress = "tutorial2";
+                }
+            }
+        }
+        else
+        {
             GameProgress = "tutorial1";
             n_hits = 0;
             trial = 0;
@@ -213,24 +248,15 @@ public class ExperimentController : MonoBehaviour
             hit = false;
             resultsDisplayed = false;
             pauseController.experiment = true;
-            tutorialController.StartTutorialTrial();
+            if(!UserInfo.Instance.zeroAimQuestions || UserInfo.Instance.n_aimQuestions == 0)
+            {
+                tutorialController.StartTutorialTrial();
             }
-        }
-        else
-        {
-        GameProgress = "tutorial1";
-        n_hits = 0;
-        trial = 0;
-        trainingTrial = 0;
-        pauses = 0;
-        score = 0;
-        scoreIncrement = 100;
-        gameOver.text = "";
-        moved = false;
-        hit = false;
-        resultsDisplayed = false;
-        pauseController.experiment = true;
-        tutorialController.StartTutorialTrial();
+            else if(UserInfo.Instance.n_aimQuestions == 1)
+            {
+                trial = 20;
+                GameProgress = "tutorial2";
+            }
         }
     }
     public void Update()
@@ -248,10 +274,12 @@ public class ExperimentController : MonoBehaviour
     {
         trialBegin = DateTime.Now;
         mouseMove.timeList = new List<string>();
+        mouseMove.targetPosxList = new List<string>();
         mouseMove.posyList = new List<string>();
         mouseMove.yInputList = new List<string>();
         mouseMove.xInputList = new List<string>();
         timeData = "";
+        targetxData = "";
         posyData = "";
         yInputData = "";
         xInputData = "";
@@ -302,7 +330,7 @@ public class ExperimentController : MonoBehaviour
             stopTime = 0;
         }
         //when training is finished
-        if(GameProgress == "training" && (trial == (n_training - 1) && hit && movementTime >= (200 - acceptableError) && movementTime <= (200 + acceptableError)) || trainingTrial >= 39)
+        if(GameProgress == "training" && (trial == (n_training - 1) && hit && movementTime >= (200 - acceptableError) && movementTime <= (200 + acceptableError) || trainingTrial >= 38))
         {
             feedbackController.trainingComplete = true;
             tutorialController.TrainingComplete.SetActive(true);
@@ -359,14 +387,15 @@ public class ExperimentController : MonoBehaviour
 
         feedbackTime = Math.Round((trialEnd - feedbackBegin).TotalMilliseconds, 0);
         timeData = String.Join(", ", mouseMove.timeList.ToArray());
+        targetxData = String.Join(",", mouseMove.targetPosxList.ToArray());
         posyData = String.Join(", ", mouseMove.posyList.ToArray());
         yInputData = String.Join(", ", mouseMove.yInputList.ToArray());
         xInputData = String.Join(", ", mouseMove.xInputList.ToArray());
 
         if(UserInfo.Instance.GameMode != "debug" && GameProgress != "tutorial1" && GameProgress != "tutorial2" && UserInfo.Instance.tokenId != "notryan")
         {
-            InsertData ("JP_FBS_Pilot_TrialData",
-            tokenId,
+            InsertData (UserInfo.Instance.TrialTable,
+            UserInfo.Instance.tokenId.ToString(),
             tTrial.ToString(),
             trialBegin.ToString(),
             certainty,
@@ -383,6 +412,7 @@ public class ExperimentController : MonoBehaviour
             movementTime.ToString(),
             feedbackTime.ToString(),
             timeData,
+            targetxData,
             posyData,
             yInputData,
             xInputData);
@@ -390,6 +420,7 @@ public class ExperimentController : MonoBehaviour
         else
         {
             Debug.Log("time: " + timeData);
+            Debug.Log("targetPos: " + targetxData);
             Debug.Log("mouseZero: " + mouseZeroY.ToString());
             Debug.Log("Sensitivity: " + UserInfo.Instance.mouseSensitivity.ToString());
             Debug.Log("posyData: " + posyData);
@@ -477,12 +508,20 @@ public class ExperimentController : MonoBehaviour
         if(UserInfo.Instance.GameMode != "debug")
         {
             string trialPauseData = String.Join(", ", UserInfo.Instance.trials_paused.ToArray());
-            UpdateUser("JP_FBS_Pilot_UserData",
+            /*UpdateUser(UserInfo.Instance.UserTable,
             UserInfo.Instance.tokenId,
             pauses.ToString(),
             trialPauseData);
+            */
         }
-        SceneManager.LoadScene("EndScreen");
+        if(UserInfo.Instance.aimQuestions)
+        {
+            SceneManager.LoadScene("AimQuestions");
+        }
+        else
+        {
+            SceneManager.LoadScene("EndScreen");
+        }
     }
 
     public void CheckCertainty()
@@ -508,7 +547,6 @@ public class ExperimentController : MonoBehaviour
             SSD += 50;
         }
     }
-
     public void ResetApparatus()
     
     {
@@ -584,10 +622,11 @@ public class ExperimentController : MonoBehaviour
     
     private void PostUserData()
     {
-        CompleteUser("JP_FBS_Pilot_TokenTable",
+        /*CompleteUser(UserInfo.Instance.TokenTable,
                      UserInfo.Instance.tokenId.ToString());
-        
-        InsertUser("JP_FBS_Pilot_UserData",  
+                     */
+    
+        InsertUser(UserInfo.Instance.UserTable,  
                     UserInfo.Instance.tokenId.ToString(),
                     UserInfo.Instance.age.ToString(),
                     UserInfo.Instance.gender.ToString(),
@@ -603,8 +642,8 @@ public class ExperimentController : MonoBehaviour
                     tutorialController.tutorial2Trials.ToString(),
                     tutorialController.startTime.ToString());
         
-        InsertLeaderboardUser  ("JP_FBS_Pilot_Leaderboard",
-                                UserInfo.Instance.tokenId.ToString(),
+        InsertLeaderboardUser  (UserInfo.Instance.LeaderboardTable,
+                                UserInfo.Instance.username.ToString(),
                                 score,
                                 reactiveScore,
                                 hitPerc,

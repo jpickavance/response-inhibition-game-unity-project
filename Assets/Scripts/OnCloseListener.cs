@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class OnCloseListener : MonoBehaviour
 {
-    [DllImport("__Internal")]
+     [DllImport("__Internal")]
     private static extern void UnloadListener();
+    /* NOT USED IN MTURK BUILD SO NO EXIT RESUME FUNCTIONALITY
 
     [DllImport("__Internal")]
     private static extern void SaveProgress (string tableName, 
@@ -17,6 +18,8 @@ public class OnCloseListener : MonoBehaviour
                                             int SSD,
                                             int score,
                                             bool windowClose);
+                                            
+    */
     
     public ExperimentController experimentController;
 
@@ -25,9 +28,10 @@ public class OnCloseListener : MonoBehaviour
         UnloadListener();
     }
 
+    /*
     public void OnClose()
      {
-        SaveProgress("JP_FBS_Pilot_TokenTable",
+        SaveProgress(UserInfo.Instance.TokenTable,
                      UserInfo.Instance.tokenId,
                      experimentController.GameProgress.ToString(),
                      experimentController.trial,
@@ -35,6 +39,7 @@ public class OnCloseListener : MonoBehaviour
                      experimentController.score,
                      true);
      }
+     */
 }
 
 /* MUST INCLUDE THE BELOW IN TEMPLATE HTML SCRIPT LINE 14
